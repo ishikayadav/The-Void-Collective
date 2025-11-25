@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>REWIND - Community-Voted Y2K Streetwear | Made in India</title>
+    <title>REWIND - Y2K Streetwear Re-Imagined | Join the Movement</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@700&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@700&family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -15,857 +15,1520 @@
         }
 
         :root {
-            --void-black: #0a0a0a;
-            --deep-black: #141414;
-            --medium-gray: #2a2a2a;
-            --light-gray: #888;
-            --off-white: #e8e8e8;
-            --accent-pink: #FF006E;
-            --accent-cyan: #00B4D8;
-            --accent-purple: #8B00FF;
-            --accent-green: #CCFF00;
+            --bg: #0f0f0f;
+            --bg-card: #1a1a1a;
+            --text: #f0f0f0;
+            --text-dim: #a0a0a0;
+            --pink: #ff80b5;
+            --cyan: #4dd4f0;
+            --green: #d4ff80;
+            --purple: #b380ff;
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--void-black);
-            color: var(--off-white);
-            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
             line-height: 1.6;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -100% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .slide-in {
+            animation: slideIn 0.8s ease-out forwards;
         }
 
         /* Header */
         header {
             position: fixed;
             top: 0;
-            left: 0;
-            right: 0;
-            padding: 1.5rem 5%;
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            width: 100%;
+            background: rgba(15, 15, 15, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1rem 5%;
             z-index: 1000;
+            transition: all 0.3s;
         }
 
         nav {
-            max-width: 1400px;
+            max-width: 1600px;
             margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
             align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-left {
+            justify-self: start;
+        }
+
+        .nav-center {
+            justify-self: center;
+        }
+
+        .nav-right {
+            justify-self: end;
+            display: flex;
+            gap: 2rem;
         }
 
         .logo {
             font-family: 'Silkscreen', monospace;
-            font-size: 1.2rem;
-            color: var(--off-white);
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, var(--pink), var(--cyan), var(--green), var(--purple));
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s linear infinite;
         }
 
-        .made-in-india {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--accent-green);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .india-flag {
-            width: 24px;
-            height: 16px;
-            background: linear-gradient(to bottom, #FF9933 33%, #ffffff 33%, #ffffff 66%, #138808 66%);
-            border-radius: 2px;
-        }
-
-        /* Hero */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 8rem 5% 4rem;
+        .nav-link {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
             position: relative;
-            text-align: center;
         }
 
-        .hero-content {
-            max-width: 900px;
+        .nav-link:hover {
+            color: var(--pink);
+            transform: translateY(-2px);
         }
 
-        .hero h1 {
-            font-family: 'Silkscreen', monospace;
-            font-size: clamp(2.5rem, 8vw, 4.5rem);
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            text-shadow: 2px 2px 0 var(--accent-cyan), -2px -2px 0 var(--accent-pink);
+        /* Hero Collections */
+        .hero {
+            padding: 8rem 5% 2rem;
+            max-width: 1600px;
+            margin: 0 auto;
         }
 
-        .hero-subtitle {
-            font-size: clamp(1.1rem, 2vw, 1.3rem);
-            color: var(--light-gray);
-            font-weight: 300;
-            margin-bottom: 3rem;
-            line-height: 1.7;
-        }
-
-        .cta-buttons {
-            display: flex;
+        .collections-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
             gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
+            margin-bottom: 2rem;
+            height: 500px;
         }
 
-        .btn {
-            padding: 1.2rem 3rem;
-            border: none;
-            border-radius: 4px;
-            font-size: 1rem;
+        .collection-box {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .collection-box:nth-child(1) { animation-delay: 0.1s; }
+        .collection-box:nth-child(2) { animation-delay: 0.2s; }
+        .collection-box:nth-child(3) { animation-delay: 0.3s; }
+
+        .collection-box:hover {
+            border-color: var(--pink);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 128, 181, 0.3);
+        }
+
+        .collection-image {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--bg-card), #242424);
+            position: relative;
+            transition: all 0.5s ease;
+        }
+
+        .collection-placeholder {
+            text-align: center;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .collection-box:hover .collection-placeholder {
+            transform: scale(1.1);
+        }
+
+        .collection-icon {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .collection-box:nth-child(1) .collection-icon { animation-delay: 0s; }
+        .collection-box:nth-child(2) .collection-icon { animation-delay: 0.5s; }
+        .collection-box:nth-child(3) .collection-icon { animation-delay: 1s; }
+
+        .collection-name {
+            font-size: 1.5rem;
             font-weight: 700;
-            font-family: 'Space Grotesk', sans-serif;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+        }
+
+        .collection-subtitle {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+        }
+
+        .hero-text {
+            text-align: center;
+            padding: 2rem;
+            background: var(--bg-card);
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease-out 0.4s forwards;
+            opacity: 0;
+        }
+
+        .hero-text h1 {
+            font-family: 'Silkscreen', monospace;
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 1rem;
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            color: var(--text-dim);
+        }
+
+        /* CTA Section - Prominent */
+        .cta-section {
+            text-align: center;
+            padding: 2.5rem;
+            background: linear-gradient(135deg, rgba(255, 128, 181, 0.15), rgba(77, 212, 240, 0.15));
+            border-radius: 12px;
+            border: 2px solid var(--pink);
+            animation: fadeInUp 0.8s ease-out 0.5s forwards, pulse 2s ease-in-out 1s infinite;
+            opacity: 0;
+        }
+
+        .btn-movement {
+            padding: 1.5rem 4rem;
+            background: var(--pink);
+            color: var(--bg);
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: 700;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s;
             text-decoration: none;
             display: inline-block;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+            position: relative;
+            overflow: hidden;
         }
 
-        .btn-primary {
-            background: var(--accent-pink);
-            color: var(--void-black);
+        .btn-movement::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
         }
 
-        .btn-primary:hover {
-            background: var(--accent-purple);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(255, 0, 110, 0.4);
+        .btn-movement:hover::before {
+            width: 300px;
+            height: 300px;
         }
 
-        .btn-secondary {
-            background: transparent;
-            color: var(--off-white);
-            border: 2px solid var(--off-white);
+        .btn-movement:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 128, 181, 0.5);
         }
 
-        .btn-secondary:hover {
-            background: var(--off-white);
-            color: var(--void-black);
+        .counter {
+            font-size: 1.2rem;
+            color: var(--text);
+            line-height: 1.8;
         }
 
-        /* Problem Section */
-        .problem-section {
-            padding: 6rem 5%;
-            background: var(--deep-black);
+        .counter strong {
+            color: var(--green);
+            font-size: 1.3rem;
         }
 
-        .section-container {
-            max-width: 1200px;
+        /* About Sections */
+        section {
+            padding: 4rem 5%;
+            max-width: 1400px;
             margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeInUp 0.8s ease-out forwards;
         }
 
         .section-label {
             font-size: 0.85rem;
-            font-weight: 700;
-            letter-spacing: 3px;
+            color: var(--cyan);
             text-transform: uppercase;
-            color: var(--accent-pink);
-            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
         }
 
         .section-title {
             font-family: 'Silkscreen', monospace;
-            font-size: clamp(2rem, 5vw, 3rem);
-            margin-bottom: 3rem;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 1rem;
         }
 
-        .problem-grid {
+        .info-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
-            margin-bottom: 4rem;
         }
 
-        .problem-card {
-            background: rgba(255, 0, 0, 0.05);
-            border: 1px solid rgba(255, 0, 0, 0.2);
-            border-radius: 8px;
-            padding: 2rem;
+        .info-card {
+            background: var(--bg-card);
+            padding: 2.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s ease;
+            animation: fadeInUp 0.8s ease-out forwards;
         }
 
-        .problem-icon {
-            font-size: 2rem;
-            margin-bottom: 1rem;
+        .info-card:nth-child(1) { animation-delay: 0.1s; }
+        .info-card:nth-child(2) { animation-delay: 0.2s; }
+        .info-card:nth-child(3) { animation-delay: 0.3s; }
+
+        .info-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--cyan);
+            box-shadow: 0 15px 30px rgba(77, 212, 240, 0.2);
         }
 
-        .problem-card h3 {
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-            color: #ff4d6d;
-        }
-
-        .solution-card {
-            background: rgba(204, 255, 0, 0.05);
-            border: 1px solid rgba(204, 255, 0, 0.2);
-            border-radius: 8px;
-            padding: 2rem;
-        }
-
-        .solution-card h3 {
-            color: var(--accent-green);
-        }
-
-        .validation-badge {
-            background: var(--accent-purple);
-            color: var(--void-black);
-            padding: 1rem 2rem;
-            border-radius: 4px;
-            font-weight: 700;
-            text-align: center;
-            margin-top: 3rem;
-        }
-
-        /* How It Works */
-        .how-it-works {
-            padding: 6rem 5%;
-        }
-
-        .steps-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            margin-top: 4rem;
-        }
-
-        .step-card {
-            text-align: center;
-        }
-
-        .step-number {
-            font-family: 'Silkscreen', monospace;
+        .info-icon {
             font-size: 3rem;
-            color: var(--accent-pink);
             margin-bottom: 1rem;
         }
 
-        .step-card h3 {
-            font-size: 1.3rem;
+        .info-card h3 {
+            font-size: 1.4rem;
             margin-bottom: 1rem;
         }
 
-        /* Outfit Collection */
-        .outfit-collection {
-            padding: 6rem 5%;
-            background: var(--deep-black);
+        .info-card p {
+            color: var(--text-dim);
+            line-height: 1.8;
         }
 
-        .outfit-grid {
+        .highlight {
+            color: var(--green);
+            font-weight: 600;
+        }
+
+        /* Collection Voting Section */
+        .voting-section {
+            background: var(--bg-card);
+            padding: 4rem 5%;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .voting-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
-            margin-top: 4rem;
+            margin-bottom: 3rem;
         }
 
-        .outfit-card {
-            background: var(--medium-gray);
+        .voting-card {
+            background: var(--bg);
             border-radius: 12px;
             overflow: hidden;
-            transition: transform 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s ease;
             cursor: pointer;
+            animation: fadeInUp 0.8s ease-out forwards;
         }
 
-        .outfit-card:hover {
+        .voting-card:nth-child(1) { animation-delay: 0.1s; }
+        .voting-card:nth-child(2) { animation-delay: 0.2s; }
+        .voting-card:nth-child(3) { animation-delay: 0.3s; }
+
+        .voting-card:hover {
+            border-color: var(--pink);
             transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 128, 181, 0.3);
         }
 
-        .outfit-image {
-            height: 350px;
-            background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+        .voting-card.selected {
+            border-color: var(--green);
+            box-shadow: 0 0 40px rgba(212, 255, 128, 0.4);
+        }
+
+        .voting-image {
+            height: 300px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 4rem;
+            background: linear-gradient(135deg, #1a1a1a, #242424);
+            transition: all 0.3s;
         }
 
-        .outfit-info {
+        .voting-card:hover .voting-image {
+            transform: scale(1.05);
+        }
+
+        .voting-info {
+            padding: 1.5rem;
+        }
+
+        .voting-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .voting-info p {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .vote-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.8rem;
+            background: var(--bg-card);
+            border-radius: 6px;
+            transition: all 0.3s;
+        }
+
+        .vote-checkbox:hover {
+            background: #242424;
+        }
+
+        /* Outfit Explorer Modal */
+        .outfit-explorer {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+
+        .outfit-explorer.active {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            animation: fadeInUp 0.3s ease-out;
+        }
+
+        .explorer-header {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .close-explorer {
+            background: var(--pink);
+            color: var(--bg);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .close-explorer:hover {
+            transform: scale(1.05);
+        }
+
+        .outfits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .outfit-card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            animation: fadeInUp 0.5s ease-out forwards;
+        }
+
+        .outfit-card:nth-child(1) { animation-delay: 0.1s; }
+        .outfit-card:nth-child(2) { animation-delay: 0.2s; }
+        .outfit-card:nth-child(3) { animation-delay: 0.3s; }
+        .outfit-card:nth-child(4) { animation-delay: 0.4s; }
+
+        .outfit-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--cyan);
+            box-shadow: 0 20px 40px rgba(77, 212, 240, 0.3);
+        }
+
+        .outfit-image {
+            height: 320px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1a1a1a, #242424);
+            font-size: 5rem;
+        }
+
+        .outfit-details {
             padding: 1.5rem;
         }
 
         .outfit-name {
-            font-family: 'Space Grotesk', sans-serif;
             font-size: 1.3rem;
             font-weight: 700;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
+            color: var(--pink);
         }
 
-        .outfit-pieces {
-            font-size: 0.9rem;
-            color: var(--light-gray);
-            margin-bottom: 1rem;
+        .outfit-component {
+            margin-bottom: 0.6rem;
+            font-size: 0.85rem;
+            color: var(--text-dim);
         }
 
-        .vote-button {
+        .outfit-specs {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 15, 15, 0.98);
+            padding: 2rem;
+            overflow-y: auto;
+            animation: fadeInUp 0.3s ease-out;
+        }
+
+        .outfit-card:hover .outfit-specs {
+            display: block;
+        }
+
+        .spec-item {
+            margin-bottom: 1.2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .spec-label {
+            font-size: 0.75rem;
+            color: var(--cyan);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.3rem;
+        }
+
+        .spec-value {
+            font-size: 0.95rem;
+            color: var(--text);
+            font-weight: 600;
+            line-height: 1.5;
+        }
+
+        /* Exploded View */
+        .exploded-view {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.98);
+            z-index: 3000;
+            overflow: hidden;
+        }
+
+        .exploded-view.active {
+            display: block;
+            animation: fadeInUp 0.3s ease-out;
+        }
+
+        .exploded-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.5rem;
-            padding: 0.8rem;
-            background: var(--accent-pink);
-            color: var(--void-black);
-            border: none;
-            border-radius: 4px;
-            font-weight: 700;
-            cursor: pointer;
-            width: 100%;
         }
 
-        .vote-count {
-            font-size: 0.85rem;
-            color: var(--light-gray);
-            margin-top: 0.5rem;
+        .exploded-center {
+            width: 450px;
+            height: 550px;
+            background: linear-gradient(135deg, #1a1a1a, #242424);
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid var(--pink);
+            z-index: 10;
+            padding: 2rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .exploded-outfit-name {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-top: 1rem;
+            color: var(--pink);
+        }
+
+        .exploded-item {
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            background: var(--bg-card);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            animation: float 3s ease-in-out infinite;
+            transition: all 0.3s;
+        }
+
+        .exploded-item:hover {
+            transform: scale(1.1);
+            border-color: var(--cyan);
+        }
+
+        .exploded-item:nth-child(2) { top: 10%; left: 10%; animation-delay: 0s; }
+        .exploded-item:nth-child(3) { top: 10%; right: 10%; animation-delay: 0.5s; }
+        .exploded-item:nth-child(4) { bottom: 10%; left: 10%; animation-delay: 1s; }
+        .exploded-item:nth-child(5) { bottom: 10%; right: 10%; animation-delay: 1.5s; }
+
+        .item-icon {
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .item-label {
+            font-size: 0.9rem;
+            font-weight: 600;
             text-align: center;
+            color: var(--text);
+        }
+
+        .item-detail {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            text-align: center;
+            margin-top: 0.3rem;
+        }
+
+        .close-exploded {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: var(--pink);
+            color: var(--bg);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            z-index: 20;
+            transition: all 0.3s;
+        }
+
+        .close-exploded:hover {
+            transform: scale(1.1);
         }
 
         /* Form Section */
         .form-section {
-            padding: 6rem 5%;
-            background: var(--void-black);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .form-with-images {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .form-images {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .form-image {
+            height: 200px;
+            border-radius: 12px;
+            background: var(--bg-card);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s;
+        }
+
+        .form-image:hover {
+            transform: scale(1.02);
+            border-color: var(--pink);
         }
 
         .form-container {
-            max-width: 600px;
-            margin: 0 auto;
-            background: var(--deep-black);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--bg-card);
+            padding: 2.5rem;
             border-radius: 12px;
-            padding: 3rem;
-        }
-
-        .form-title {
-            font-family: 'Silkscreen', monospace;
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            text-align: center;
+            border: 2px solid var(--green);
         }
 
         .form-group {
             margin-bottom: 1.5rem;
         }
 
-        .form-group label {
+        .form-label {
             display: block;
             margin-bottom: 0.5rem;
             font-weight: 600;
-            color: var(--off-white);
         }
 
-        .form-group input,
-        .form-group select {
+        .form-input,
+        .form-select,
+        .form-textarea {
             width: 100%;
-            padding: 1rem;
-            background: var(--medium-gray);
+            padding: 0.9rem;
+            background: var(--bg);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 4px;
-            color: var(--off-white);
+            border-radius: 6px;
+            color: var(--text);
             font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s;
         }
 
-        .checkbox-group {
-            display: flex;
-            flex-direction: column;
+        .form-textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--green);
+            box-shadow: 0 0 0 3px rgba(212, 255, 128, 0.1);
+        }
+
+        .benefits-box {
+            background: rgba(212, 255, 128, 0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--green);
+        }
+
+        .benefits-box h4 {
+            color: var(--green);
+            margin-bottom: 0.8rem;
+        }
+
+        .benefits-box ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .benefits-box li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .benefits-box li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--green);
+            font-weight: 700;
+        }
+
+        .outfit-selection {
+            display: grid;
             gap: 0.8rem;
         }
 
-        .checkbox-group label {
+        .outfit-option {
             display: flex;
             align-items: center;
             gap: 0.8rem;
+            padding: 0.9rem;
+            background: var(--bg);
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s;
             cursor: pointer;
         }
 
-        .checkbox-group input[type="checkbox"],
-        .radio-group input[type="radio"] {
-            width: auto;
+        .outfit-option:hover {
+            background: #1a1a1a;
+            border-color: var(--pink);
         }
 
-        .privacy-note {
-            font-size: 0.85rem;
-            color: var(--light-gray);
-            margin-top: 1rem;
-            text-align: center;
+        .submit-btn {
+            width: 100%;
+            padding: 1.3rem;
+            background: var(--green);
+            color: var(--bg);
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
         }
 
-        /* Transparency Section */
-        .transparency-section {
-            padding: 6rem 5%;
-            background: var(--deep-black);
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
         }
 
-        .transparency-box {
-            max-width: 800px;
-            margin: 0 auto;
-            background: rgba(204, 255, 0, 0.05);
-            border: 2px solid var(--accent-green);
-            border-radius: 12px;
-            padding: 3rem;
-            text-align: center;
+        .submit-btn:hover::before {
+            width: 400px;
+            height: 400px;
         }
 
-        .transparency-title {
-            font-family: 'Silkscreen', monospace;
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            color: var(--accent-green);
-        }
-
-        .milestone-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-
-        .milestone {
-            text-align: center;
-        }
-
-        .milestone-icon {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .milestone-text {
-            font-weight: 600;
-        }
-
-        /* Made in India Highlight */
-        .india-highlight {
-            background: linear-gradient(135deg, #FF9933 0%, #138808 100%);
-            padding: 4rem 5%;
-            text-align: center;
-        }
-
-        .india-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .india-content h2 {
-            font-family: 'Silkscreen', monospace;
-            font-size: 2.5rem;
-            color: white;
-            margin-bottom: 1.5rem;
-        }
-
-        .india-content p {
-            font-size: 1.2rem;
-            color: white;
-            line-height: 1.8;
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(212, 255, 128, 0.5);
         }
 
         /* Footer */
         footer {
-            padding: 4rem 5% 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-brand h3 {
-            font-family: 'Silkscreen', monospace;
-            margin-bottom: 1rem;
-        }
-
-        .footer-links h4 {
-            font-size: 0.9rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-        }
-
-        .footer-links ul {
-            list-style: none;
-        }
-
-        .footer-links a {
-            color: var(--light-gray);
-            text-decoration: none;
-            display: block;
-            padding: 0.3rem 0;
-        }
-
-        .footer-links a:hover {
-            color: var(--off-white);
-        }
-
-        .footer-bottom {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding-top: 2rem;
+            padding: 3rem 5%;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             text-align: center;
-            color: var(--light-gray);
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .cta-buttons {
-                flex-direction: column;
-            }
-            
-            .btn {
-                width: 100%;
+        /* Mobile */
+        @media (max-width: 968px) {
+            nav {
+                grid-template-columns: 1fr;
+                text-align: center;
             }
 
-            .outfit-grid,
-            .problem-grid,
-            .steps-grid {
+            .nav-left, .nav-center, .nav-right {
+                justify-self: center;
+            }
+
+            .nav-right {
+                margin-top: 1rem;
+            }
+
+            .collections-grid {
                 grid-template-columns: 1fr;
+                height: auto;
+            }
+
+            .collection-box {
+                height: 300px;
+            }
+
+            .form-with-images {
+                grid-template-columns: 1fr;
+            }
+
+            .exploded-item {
+                width: 120px;
+                height: 120px;
+                padding: 1rem;
+            }
+
+            .exploded-center {
+                width: 300px;
+                height: 400px;
             }
         }
     </style>
 </head>
 <body>
     <!-- Header -->
-    <header>
+    <header class="fade-in">
         <nav>
-            <div class="logo">REWIND</div>
-            <div class="made-in-india">
-                <div class="india-flag"></div>
-                Made in India
+            <div class="nav-left">
+                <a href="#collections" class="nav-link">Explore Styles</a>
+            </div>
+            <div class="nav-center">
+                <div class="logo">REWIND</div>
+            </div>
+            <div class="nav-right">
+                <a href="#about" class="nav-link">About</a>
+                <a href="#join" class="nav-link">Join</a>
+                <a href="#contact" class="nav-link">Contact</a>
             </div>
         </nav>
     </header>
 
-    <!-- Hero -->
+    <!-- Hero with Rotating Collections -->
     <section class="hero">
-        <div class="hero-content">
-            <h1>You don't follow trends. You create them.</h1>
-            <p class="hero-subtitle">
-                Help us validate community-voted Y2K streetwear. Vote on designs. Shape what gets made. 
-                <strong>Proudly designed and manufactured in India.</strong>
+        <div class="collections-grid">
+            <!-- Collection 1: Electric Patchwork -->
+            <div class="collection-box" data-collection="electric">
+                <div class="collection-image">
+                    <div class="collection-placeholder">
+                        <div class="collection-icon">⚡</div>
+                        <div class="collection-name">Electric Patchwork</div>
+                        <div class="collection-subtitle">Bold • Vibrant • Eclectic</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Collection 2: Butterfly Metropolis -->
+            <div class="collection-box" data-collection="butterfly">
+                <div class="collection-image">
+                    <div class="collection-placeholder">
+                        <div class="collection-icon">🦋</div>
+                        <div class="collection-name">Butterfly Metropolis</div>
+                        <div class="collection-subtitle">Feminine • Transformative • Urban</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Collection 3: Sport/Club Fusion -->
+            <div class="collection-box" data-collection="sportclub">
+                <div class="collection-image">
+                    <div class="collection-placeholder">
+                        <div class="collection-icon">🏃</div>
+                        <div class="collection-name">Sport/Club Fusion</div>
+                        <div class="collection-subtitle">Athletic • Bold • Street</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-text">
+            <h1>Y2K streetwear, <span style="color: var(--pink);">re-imagined</span></h1>
+            <p>Vote on designs. We make only what you order. Zero waste. Made in India.</p>
+        </div>
+
+        <!-- CTA - Prominent Position -->
+        <div class="cta-section">
+            <a href="#join" class="btn-movement">🔥 Join the Movement</a>
+            <div class="counter">
+                <strong>127 people</strong> have joined<br>
+                Need <strong>873 more</strong> by <strong>December 15, 2025</strong>
+            </div>
+        </div>
+    </section>
+
+    <!-- What is REWIND? -->
+    <section id="about">
+        <div class="section-header">
+            <div class="section-label">About REWIND</div>
+            <h2 class="section-title">What is REWIND?</h2>
+        </div>
+
+        <div class="info-grid">
+            <div class="info-card">
+                <div class="info-icon">🎨</div>
+                <h3>Y2K Re-Imagined</h3>
+                <p>We take iconic early 2000s streetwear aesthetics and evolve them for today. Bold silhouettes meet <span class="highlight">modern sustainability</span>. It's not throwback fashion—it's the future.</p>
+            </div>
+
+            <div class="info-card">
+                <div class="info-icon">🗳️</div>
+                <h3>Community Co-Creates</h3>
+                <p>You vote on every design. Your preferences determine what gets produced. No corporate guesswork. <span class="highlight">Real co-creation</span> with Gen Z, for Gen Z.</p>
+            </div>
+
+            <div class="info-card">
+                <div class="info-icon">🇮🇳</div>
+                <h3>Made in India</h3>
+                <p>Every piece designed, manufactured, and shipped from India. We're building <span class="highlight">homegrown fashion</span> that competes globally while supporting local manufacturing.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- How We Work -->
+    <section>
+        <div class="section-header">
+            <div class="section-label">Process</div>
+            <h2 class="section-title">How We Work</h2>
+        </div>
+
+        <div class="info-grid">
+            <div class="info-card">
+                <div class="info-icon">01</div>
+                <h3>You Vote</h3>
+                <p>Browse collections. Vote on styles you love. Your preferences shape what we produce.</p>
+            </div>
+
+            <div class="info-card">
+                <div class="info-icon">02</div>
+                <h3>We Validate</h3>
+                <p>Once we hit <span class="highlight">1000 community members</span>, we launch. Pricing announced. First orders open.</p>
+            </div>
+
+            <div class="info-card">
+                <div class="info-icon">03</div>
+                <h3>Made-to-Order</h3>
+                <p><span class="highlight">Zero inventory.</span> We only make what you buy. No excess, no waste, no landfill fashion.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why We Do This -->
+    <section style="background: var(--bg-card); padding: 4rem 5%; border-top: 1px solid rgba(255, 255, 255, 0.1); border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+        <div class="section-header">
+            <div class="section-label">Mission</div>
+            <h2 class="section-title">Why We Do This</h2>
+        </div>
+
+        <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+            <p style="font-size: 1.2rem; line-height: 1.9; color: var(--text-dim); margin-bottom: 2rem;">
+                Fast fashion produces <span class="highlight">2,000+ designs per week</span> and throws away 85% unsold. 
+                You get what's cheapest, not what you want. Brands decide, you settle.
             </p>
-            <div class="cta-buttons">
-                <a href="#join-form" class="btn btn-primary">Join Voting Preview →</a>
-                <a href="#how-it-works" class="btn btn-secondary">See How It Works ↓</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Problem Section -->
-    <section class="problem-section">
-        <div class="section-container">
-            <div class="section-label">Why REWIND?</div>
-            <h2 class="section-title">The Problem With Fast Fashion</h2>
-            
-            <div class="problem-grid">
-                <div class="problem-card">
-                    <div class="problem-icon">❌</div>
-                    <h3>2,000+ Designs Per Week</h3>
-                    <p>Fast fashion makes thousands of designs weekly and throws away 85% unsold. Pure waste.</p>
-                </div>
-                <div class="problem-card">
-                    <div class="problem-icon">❌</div>
-                    <h3>You Get What's Cheapest</h3>
-                    <p>Not what you actually want. Brands decide, you settle.</p>
-                </div>
-                <div class="problem-card">
-                    <div class="problem-icon">❌</div>
-                    <h3>Designed to Make You Buy More</h3>
-                    <p>Shein's entire model exists to push quantity over quality. More buying, less wearing.</p>
-                </div>
-            </div>
-
-            <h2 class="section-title">REWIND's Solution</h2>
-            
-            <div class="problem-grid">
-                <div class="solution-card">
-                    <div class="problem-icon">✓</div>
-                    <h3>What Do YOU Want to Wear?</h3>
-                    <p>Community decides every design. No corporate guessing.</p>
-                </div>
-                <div class="solution-card">
-                    <div class="problem-icon">✓</div>
-                    <h3>Voting Shapes Every Design</h3>
-                    <p>Your vote determines what gets produced. Real co-creation.</p>
-                </div>
-                <div class="solution-card">
-                    <div class="problem-icon">✓</div>
-                    <h3>Made-to-Order = Zero Waste</h3>
-                    <p>We only make what you order. Maximum intention, zero excess.</p>
-                </div>
-            </div>
-
-            <div class="validation-badge">
-                We're testing if Gen Z actually wants to co-create fashion. 
-                Help us prove corporations wrong. <strong>Join India's first community-voted streetwear brand.</strong>
-            </div>
-        </div>
-    </section>
-
-    <!-- How It Works -->
-    <section class="how-it-works" id="how-it-works">
-        <div class="section-container">
-            <div class="section-label">The Process</div>
-            <h2 class="section-title">How It Works</h2>
-            
-            <div class="steps-grid">
-                <div class="step-card">
-                    <div class="step-number">01</div>
-                    <h3>Join Community</h3>
-                    <p>Sign up to access voting and help shape our first collection</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-number">02</div>
-                    <h3>Vote on Designs</h3>
-                    <p>Choose which Y2K styles we produce first. Your vote matters.</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-number">03</div>
-                    <h3>We Produce</h3>
-                    <p>Top-voted designs get manufactured in India, made-to-order only</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-number">04</div>
-                    <h3>You Wear It</h3>
-                    <p>Get exactly what you voted for. No waste, pure intention.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Outfit Collection -->
-    <section class="outfit-collection">
-        <div class="section-container">
-            <div class="section-label">First Collection Preview</div>
-            <h2 class="section-title">Vote on Which Styles We Produce First</h2>
-            <p style="max-width: 700px; margin: 0 auto 0; color: var(--light-gray);">
-                These are concept directions. Your votes decide what we actually make in India. 
-                Join our community to vote on the final designs.
+            <p style="font-size: 1.2rem; line-height: 1.9; color: var(--text-dim);">
+                REWIND flips this. <span class="highlight">Community decides every design.</span> We make only what sells. 
+                Maximum intention, zero waste. Y2K aesthetics evolved with modern values.
             </p>
-
-            <div class="outfit-grid">
-                <div class="outfit-card">
-                    <div class="outfit-image" style="background: linear-gradient(135deg, #FF006E, #000);">🔥</div>
-                    <div class="outfit-info">
-                        <div class="outfit-name">Neon Rebel</div>
-                        <div class="outfit-pieces">Oversized graphic tee • Baggy cargos • Chunky sneakers • Beaded bag</div>
-                        <button class="vote-button">❤️ Vote for This Style</button>
-                        <div class="vote-count">127 votes</div>
-                    </div>
-                </div>
-
-                <div class="outfit-card">
-                    <div class="outfit-image" style="background: linear-gradient(135deg, #CCFF00, #8B00FF);">⚡</div>
-                    <div class="outfit-info">
-                        <div class="outfit-name">Cyber Grunge</div>
-                        <div class="outfit-pieces">Cropped hoodie • Wide-leg jeans • Platform shoes • Mini backpack</div>
-                        <button class="vote-button">❤️ Vote for This Style</button>
-                        <div class="vote-count">89 votes</div>
-                    </div>
-                </div>
-
-                <div class="outfit-card">
-                    <div class="outfit-image" style="background: linear-gradient(135deg, #00B4D8, #2a2a2a);">💜</div>
-                    <div class="outfit-info">
-                        <div class="outfit-name">Y2K Nostalgia</div>
-                        <div class="outfit-pieces">Oversized flannel • Bike shorts • High-tops • Bucket hat</div>
-                        <button class="vote-button">❤️ Vote for This Style</button>
-                        <div class="vote-count">156 votes</div>
-                    </div>
-                </div>
-
-                <div class="outfit-card">
-                    <div class="outfit-image" style="background: linear-gradient(135deg, #FF1493, #FFB6C1);">✨</div>
-                    <div class="outfit-info">
-                        <div class="outfit-name">Playful Edge</div>
-                        <div class="outfit-pieces">Baby tee • Low-rise pants • Chunky sandals • Statement belt</div>
-                        <button class="vote-button">❤️ Vote for This Style</button>
-                        <div class="vote-count">203 votes</div>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
 
-    <!-- Form Section -->
-    <section class="form-section" id="join-form">
-        <div class="form-container">
-            <h2 class="form-title">Join REWIND Early Community</h2>
-            
-            <form>
-                <div class="form-group">
-                    <label for="email">Email *</label>
-                    <input type="email" id="email" placeholder="your@email.com" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="city">City *</label>
-                    <select id="city" required>
-                        <option value="">Select your city</option>
-                        <option value="delhi">Delhi</option>
-                        <option value="mumbai">Mumbai</option>
-                        <option value="bangalore">Bangalore</option>
-                        <option value="pune">Pune</option>
-                        <option value="hyderabad">Hyderabad</option>
-                        <option value="chennai">Chennai</option>
-                        <option value="kolkata">Kolkata</option>
-                        <option value="ahmedabad">Ahmedabad</option>
-                        <option value="jaipur">Jaipur</option>
-                        <option value="other">Other</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>I'm interested in: *</label>
-                    <div class="checkbox-group">
-                        <label>
-                            <input type="checkbox" name="interest" value="voting"> 
-                            Voting on designs
-                        </label>
-                        <label>
-                            <input type="checkbox" name="interest" value="launch"> 
-                            Getting launch updates
-                        </label>
-                        <label>
-                            <input type="checkbox" name="interest" value="pricing"> 
-                            Knowing pricing when announced
-                        </label>
-                        <label>
-                            <input type="checkbox" name="interest" value="influencer"> 
-                            Partnering as micro-influencer
-                        </label>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label>Which style resonates most? *</label>
-                    <div class="checkbox-group radio-group">
-                        <label>
-                            <input type="radio" name="style" value="neon-rebel" required> 
-                            Neon Rebel
-                        </label>
-                        <label>
-                            <input type="radio" name="style" value="cyber-grunge"> 
-                            Cyber Grunge
-                        </label>
-                        <label>
-                            <input type="radio" name="style" value="y2k-nostalgia"> 
-                            Y2K Nostalgia
-                        </label>
-                        <label>
-                            <input type="radio" name="style" value="playful-edge"> 
-                            Playful Edge
-                        </label>
-                    </div>
-                </div>
-
-                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
-                    Join Voting Preview
-                </button>
-
-                <p class="privacy-note">
-                    We'll only email you about voting and launch updates. No spam. Unsubscribe anytime.
-                </p>
-            </form>
-        </div>
-    </section>
-
-    <!-- Transparency Section -->
-    <section class="transparency-section">
-        <div class="section-container">
-            <div class="transparency-box">
-                <h2 class="transparency-title">No Prices Yet. Here's Why.</h2>
-                <p style="font-size: 1.1rem; margin-bottom: 2rem;">
-                    We're testing if you actually want community-voted fashion before we commit to production.
-                </p>
-
-                <div class="milestone-grid">
-                    <div class="milestone">
-                        <div class="milestone-icon">📊</div>
-                        <div class="milestone-text">Announce Pricing</div>
-                    </div>
-                    <div class="milestone">
-                        <div class="milestone-icon">🗳️</div>
-                        <div class="milestone-text">Launch First Vote</div>
-                    </div>
-                    <div class="milestone">
-                        <div class="milestone-icon">👕</div>
-                        <div class="milestone-text">Produce in India</div>
-                    </div>
-                </div>
-
-                <p style="font-size: 1.05rem; margin-bottom: 2rem;">
-                    Once we have <strong>200 committed community members</strong>, we'll activate these milestones.
-                </p>
-
-                <p style="font-size: 1.1rem; font-weight: 600;">
-                    Transparency matters. We're building this WITH you, not FOR you.
-                </p>
-
-                <a href="#join-form" class="btn btn-primary" style="margin-top: 2rem; display: inline-block;">
-                    Be One of the 200 →
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Made in India Highlight -->
-    <section class="india-highlight">
-        <div class="india-content">
-            <h2>🇮🇳 Proudly Made in India</h2>
-            <p>
-                Every REWIND piece is designed in India, manufactured in India, and shipped from India. 
-                We're building a homegrown fashion brand that puts community and sustainability first. 
-                Supporting REWIND means supporting Indian manufacturing, Indian creativity, and Indian youth culture.
+    <!-- Collection Voting -->
+    <section id="collections" class="voting-section">
+        <div class="section-header">
+            <div class="section-label">Vote Now</div>
+            <h2 class="section-title">Choose Your Collections</h2>
+            <p style="color: var(--text-dim); max-width: 700px; margin: 0 auto;">
+                Vote on 1 or more collections. Click to explore 4 outfits in each collection.
             </p>
+        </div>
+
+        <div class="voting-grid">
+            <!-- Electric Patchwork -->
+            <div class="voting-card" data-collection="electric" onclick="openExplorer('electric')">
+                <div class="voting-image">
+                    <div class="collection-placeholder">
+                        <div class="collection-icon">⚡</div>
+                    </div>
+                </div>
+                <div class="voting-info">
+                    <h3>Electric Patchwork</h3>
+                    <p>Bold color blocks, mixed textures, deconstructed silhouettes. Maximum visual impact.</p>
+                    <label class="vote-checkbox" onclick="event.stopPropagation()">
+                        <input type="checkbox" name="collection" value="electric">
+                        <span>Vote for this collection</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Butterfly Metropolis -->
+            <div class="voting-card" data-collection="butterfly" onclick="openExplorer('butterfly')">
+                <div class="voting-image">
+                    <div class="collection-placeholder">
+                        <div class="collection-icon">🦋</div>
+                    </div>
+                </div>
+                <div class="voting-info">
+                    <h3>Butterfly Metropolis</h3>
+                    <p>Delicate prints, transformative energy, Y2K femininity reimagined. Urban meets ethereal.</p>
+                    <label class="vote-checkbox" onclick="event.stopPropagation()">
+                        <input type="checkbox" name="collection" value="butterfly">
+                        <span>Vote for this collection</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Sport/Club Fusion -->
+            <div class="voting-card" data-collection="sportclub" onclick="openExplorer('sportclub')">
+                <div class="voting-image">
+                    <div class="collection-placeholder">
+                        <div class="collection-icon">🏃</div>
+                    </div>
+                </div>
+                <div class="voting-info">
+                    <h3>Sport/Club Fusion</h3>
+                    <p>Athletic wear meets club energy. Technical fabrics with Y2K edge. Function + fashion.</p>
+                    <label class="vote-checkbox" onclick="event.stopPropagation()">
+                        <input type="checkbox" name="collection" value="sportclub">
+                        <span>Vote for this collection</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Outfit Explorer Modal -->
+    <div class="outfit-explorer" id="outfit-explorer">
+        <div class="explorer-header">
+            <h2 id="explorer-title">Collection Outfits</h2>
+            <button class="close-explorer" onclick="closeExplorer()">✕ Close</button>
+        </div>
+        <div class="outfits-grid" id="outfits-container">
+            <!-- Outfits will be inserted here dynamically -->
+        </div>
+    </div>
+
+    <!-- Exploded View Modal -->
+    <div class="exploded-view" id="exploded-view">
+        <button class="close-exploded" onclick="closeExploded()">✕ Close</button>
+        <div class="exploded-container" id="exploded-container">
+            <!-- Exploded view items will be inserted here -->
+        </div>
+    </div>
+
+    <!-- Join Form -->
+    <section id="join">
+        <div class="section-header">
+            <div class="section-label">Join the Movement</div>
+            <h2 class="section-title">Be One of the First 1000</h2>
+        </div>
+
+        <div class="form-section">
+            <div class="form-with-images">
+                <div class="form-images">
+                    <div class="form-image">
+                        <div style="text-align: center;">
+                            <div style="font-size: 4rem;">⚡</div>
+                            <div style="font-size: 1.2rem; font-weight: 600;">Electric Patchwork</div>
+                        </div>
+                    </div>
+                    <div class="form-image">
+                        <div style="text-align: center;">
+                            <div style="font-size: 4rem;">🦋</div>
+                            <div style="font-size: 1.2rem; font-weight: 600;">Butterfly Metropolis</div>
+                        </div>
+                    </div>
+                    <div class="form-image">
+                        <div style="text-align: center;">
+                            <div style="font-size: 4rem;">🏃</div>
+                            <div style="font-size: 1.2rem; font-weight: 600;">Sport/Club Fusion</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-container">
+                    <div class="benefits-box">
+                        <h4>✨ Early Member Benefits</h4>
+                        <ul>
+                            <li>Special pricing post-validation (up to 20% off)</li>
+                            <li>First access to launch drops</li>
+                            <li>Exclusive voting power on future collections</li>
+                            <li>Priority pre-orders & limited editions</li>
+                        </ul>
+                    </div>
+
+                    <form id="join-form" action="https://docs.google.com/forms/d/e/YOUR_FORM_ID/formResponse" method="POST" target="hidden_iframe">
+                        <div class="form-group">
+                            <label class="form-label">Email *</label>
+                            <input type="email" name="entry.EMAIL" class="form-input" placeholder="your@email.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Name *</label>
+                            <input type="text" name="entry.NAME" class="form-input" placeholder="Your name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">City *</label>
+                            <select name="entry.CITY" class="form-select" required>
+                                <option value="">Select city</option>
+                                <option>Delhi</option>
+                                <option>Mumbai</option>
+                                <option>Bangalore</option>
+                                <option>Pune</option>
+                                <option>Hyderabad</option>
+                                <option>Chennai</option>
+                                <option>Kolkata</option>
+                                <option>Jaipur</option>
+                                <option>Ahmedabad</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Which collection(s) interest you most? *</label>
+                            <div class="outfit-selection">
+                                <label class="outfit-option">
+                                    <input type="checkbox" name="entry.COLLECTION" value="Electric Patchwork">
+                                    <span>⚡ Electric Patchwork</span>
+                                </label>
+                                <label class="outfit-option">
+                                    <input type="checkbox" name="entry.COLLECTION" value="Butterfly Metropolis">
+                                    <span>🦋 Butterfly Metropolis</span>
+                                </label>
+                                <label class="outfit-option">
+                                    <input type="checkbox" name="entry.COLLECTION" value="Sport/Club Fusion">
+                                    <span>🏃 Sport/Club Fusion</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">If you chose Electric Patchwork, which outfit did you like?</label>
+                            <select name="entry.ELECTRIC_OUTFIT" class="form-select">
+                                <option value="">Select outfit (optional)</option>
+                                <option>Neon Fusion</option>
+                                <option>Graffiti Energy</option>
+                                <option>Varsity Bounce</option>
+                                <option>Panel Pop</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">If you chose Butterfly Metropolis, which outfit did you like?</label>
+                            <select name="entry.BUTTERFLY_OUTFIT" class="form-select">
+                                <option value="">Select outfit (optional)</option>
+                                <option>Butterfly Dreamscape</option>
+                                <option>Holo Flight</option>
+                                <option>Afterparty Wings</option>
+                                <option>Urban Moth</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">If you chose Sport/Club Fusion, which outfit did you like?</label>
+                            <select name="entry.SPORTCLUB_OUTFIT" class="form-select">
+                                <option value="">Select outfit (optional)</option>
+                                <option>Pullover Pulse</option>
+                                <option>Parachute Rave</option>
+                                <option>Layer Jam</option>
+                                <option>Stadium Streetwalker</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Your thoughts, feedback, or suggestions</label>
+                            <textarea name="entry.FEEDBACK" class="form-textarea" placeholder="Share your ideas, style preferences, what you'd like to see, or any feedback..."></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Join the Movement 🚀</button>
+
+                        <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-dim); text-align: center;">
+                            By joining, you'll get email updates about voting, pricing, and launch. Unsubscribe anytime.
+                        </p>
+                    </form>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-brand">
-                <h3>REWIND</h3>
-                <p>Community-voted Y2K streetwear. Made in India. Zero waste.</p>
-                <div class="made-in-india" style="margin-top: 1rem;">
-                    <div class="india-flag"></div>
-                    Made in India
-                </div>
+    <footer id="contact">
+        <div style="max-width: 800px; margin: 0 auto;">
+            <div style="font-family: 'Silkscreen', monospace; font-size: 2rem; margin-bottom: 1rem;" class="logo">REWIND</div>
+            <p style="color: var(--text-dim); margin-bottom: 2rem;">
+                Y2K streetwear re-imagined. Community-voted. Made-to-order. Made in India.
+            </p>
+            <div style="display: flex; gap: 2rem; justify-content: center; margin-bottom: 2rem; flex-wrap: wrap;">
+                <a href="mailto:hello@thevoidcollective.shop" class="nav-link">Email</a>
+                <a href="#" class="nav-link">Instagram</a>
+                <a href="#" class="nav-link">Twitter</a>
             </div>
-            <div class="footer-links">
-                <h4>Company</h4>
-                <ul>
-                    <li><a href="https://thevoidcollective.shop">The Void Collective</a></li>
-                    <li><a href="#how-it-works">How It Works</a></li>
-                    <li><a href="#join-form">Join Community</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h4>Connect</h4>
-                <ul>
-                    <li><a href="#">Instagram</a></li>
-                    <li><a href="#">Twitter</a></li>
-                    <li><a href="mailto:hello@thevoidcollective.shop">Email</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 REWIND by The Void Collective. Made in India with ❤️</p>
+            <p style="color: var(--text-dim); font-size: 0.9rem;">
+                © 2025 REWIND by The Void Collective. Made in India 🇮🇳
+            </p>
         </div>
     </footer>
 
+    <!-- Hidden iframe for form submission -->
+    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+
     <script>
+        // Outfit data
+        const outfitData = {
+            electric: [
+                {
+                    name: "Neon Fusion",
+                    icon: "👕",
+                    components: {
+                        top: { name: "Patchwork Crop Tee", material: "Cotton Blend", fit: "Oversized fit" },
+                        bottom: { name: "Multi-Panel Cargo Pants", material: "Technical Twill", fit: "Baggy fit" },
+                        shoes: { name: "Platform Sneakers", detail: "Chunky sole" },
+                        accessories: ["Chain Belt", "Crossbody Bag", "Colorblock Socks"]
+                    }
+                },
+                {
+                    name: "Graffiti Energy",
+                    icon: "🎨",
+                    components: {
+                        top: { name: "Graffiti Print Hoodie", material: "Organic Cotton", fit: "Relaxed fit" },
+                        bottom: { name: "Patchwork Denim Jeans", material: "Recycled Denim", fit: "Straight leg" },
+                        shoes: { name: "High-Top Trainers", detail: "Contrast details" },
+                        accessories: ["Neon Mesh Sleeves", "Logo Beanie"]
+                    }
+                },
+                {
+                    name: "Varsity Bounce",
+                    icon: "🏀",
+                    components: {
+                        top: { name: "Colorblock Varsity Bomber", material: "Recycled Poly", fit: "Loose fit" },
+                        bottom: { name: "Logo Patch Shorts", material: "Organic Twill", fit: "Wide leg" },
+                        shoes: { name: "Canvas Skate Shoes", detail: "Padded tongue" },
+                        accessories: ["Striped Crew Socks", "Mirrored Sunglasses"]
+                    }
+                },
+                {
+                    name: "Panel Pop",
+                    icon: "🔲",
+                    components: {
+                        top: { name: "Block Panel Zip Jacket", material: "Hemp/Cotton", fit: "Oversized" },
+                        bottom: { name: "Cord Trousers", material: "Bold Contrasts", fit: "Baggy fit" },
+                        shoes: { name: "Platform Sandals", detail: "Two-tone straps" },
+                        accessories: ["Minimalist Sling Bag", "Layered Beads"]
+                    }
+                }
+            ],
+            butterfly: [
+                {
+                    name: "Butterfly Dreamscape",
+                    icon: "🦋",
+                    components: {
+                        top: { name: "Cropped Butterfly Denim Jacket", material: "Organic Denim", fit: "Shrunken fit" },
+                        bottom: { name: "Metallic Flared Trousers", material: "Upcycled Poly", fit: "Slim fit" },
+                        shoes: { name: "Platform Boots", detail: "Holographic finish" },
+                        accessories: ["Butterfly Mesh Turtleneck", "Chunky Chain Necklace"]
+                    }
+                },
+                {
+                    name: "Holo Flight",
+                    icon: "✨",
+                    components: {
+                        top: { name: "Holographic Windbreaker", material: "Recycled Nylon", fit: "Boxy fit" },
+                        bottom: { name: "Straight Cargo Trousers", material: "Pastel Panels", fit: "Roomy pockets" },
+                        shoes: { name: "Colorblock Sneakers", detail: "Puffed construction" },
+                        accessories: ["Soft Ribbed Tee", "City Satchel"]
+                    }
+                },
+                {
+                    name: "Afterparty Wings",
+                    icon: "🌙",
+                    components: {
+                        top: { name: "Mesh Butterfly Top", material: "Subtle Sheen", fit: "Relaxed fit" },
+                        bottom: { name: "Low-Rise Patchwork Jeans", material: "Graphic Stitch", fit: "Wide leg" },
+                        shoes: { name: "Platform Sandals", detail: "Wide strap" },
+                        accessories: ["Metallic Bucket Hat", "Butterfly Chainbelt"]
+                    }
+                },
+                {
+                    name: "Urban Moth",
+                    icon: "🌃",
+                    components: {
+                        top: { name: "Metallic Bomber", material: "Lightweight", fit: "Dropped shoulder" },
+                        bottom: { name: "Cargo Mini Skirt", material: "Over Mesh Leggings", fit: "Layered" },
+                        shoes: { name: "Platform Loafers", detail: "Deep sole" },
+                        accessories: ["Iridescent Mini Backpack", "Graphic Long Sleeve Layer"]
+                    }
+                }
+            ],
+            sportclub: [
+                {
+                    name: "Pullover Pulse",
+                    icon: "👔",
+                    components: {
+                        top: { name: "Colorblock Tech Pullover", material: "Organic Jersey", fit: "Slightly boxy" },
+                        bottom: { name: "Oversized Track Shorts", material: "Contrast Tape", fit: "Roomy" },
+                        shoes: { name: "High-Top Sneakers", detail: "Athletic sole" },
+                        accessories: ["Mesh Tee Layer", "Sweatbands"]
+                    }
+                },
+                {
+                    name: "Parachute Rave",
+                    icon: "🪂",
+                    components: {
+                        top: { name: "Retro Athletic Hoodie", material: "French Terry", fit: "Loose fit" },
+                        bottom: { name: "Baggy Parachute Pants", material: "Drawcord ankles", fit: "Ultra baggy" },
+                        shoes: { name: "Chunky Skate Shoes", detail: "Grip soles" },
+                        accessories: ["Sports Tank Underlayer", "Mesh Bucket Hat"]
+                    }
+                },
+                {
+                    name: "Layer Jam",
+                    icon: "🎵",
+                    components: {
+                        top: { name: "Mesh Zip Jacket", material: "Powernet", fit: "Relaxed fit" },
+                        bottom: { name: "Paneled Track Pants", material: "Smooth Tech Knit", fit: "Athletic" },
+                        shoes: { name: "Platform Slides", detail: "Ribbed Straps & Socks" },
+                        accessories: ["Bright Logo Tote", "Layered Necklaces"]
+                    }
+                },
+                {
+                    name: "Stadium Streetwalker",
+                    icon: "🏟️",
+                    components: {
+                        top: { name: "Graphic Tape Windbreaker", material: "Technical Shell", fit: "Oversized" },
+                        bottom: { name: "Running Shorts", material: "Over Mesh Leggings", fit: "Snap side" },
+                        shoes: { name: "Bold Trainers", detail: "Colorblock details" },
+                        accessories: ["Fanny Pack", "Colored Lens Sunglasses"]
+                    }
+                }
+            ]
+        };
+
+        // Open outfit explorer
+        function openExplorer(collection) {
+            const explorer = document.getElementById('outfit-explorer');
+            const title = document.getElementById('explorer-title');
+            const container = document.getElementById('outfits-container');
+            
+            const titles = {
+                electric: 'Electric Patchwork Collection',
+                butterfly: 'Butterfly Metropolis Collection',
+                sportclub: 'Sport/Club Fusion Collection'
+            };
+            title.textContent = titles[collection];
+            
+            const outfits = outfitData[collection];
+            container.innerHTML = outfits.map((outfit, index) => `
+                <div class="outfit-card" onclick="openExploded('${collection}', ${index})">
+                    <div class="outfit-image">${outfit.icon}</div>
+                    <div class="outfit-details">
+                        <div class="outfit-name">${outfit.name}</div>
+                        <div class="outfit-component">Top: ${outfit.components.top.name}</div>
+                        <div class="outfit-component">Bottom: ${outfit.components.bottom.name}</div>
+                        <div class="outfit-component">Shoes: ${outfit.components.shoes.name}</div>
+                    </div>
+                    <div class="outfit-specs">
+                        <div class="spec-item">
+                            <div class="spec-label">TOP</div>
+                            <div class="spec-value">${outfit.components.top.name}<br>${outfit.components.top.material} • ${outfit.components.top.fit}</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">BOTTOM</div>
+                            <div class="spec-value">${outfit.components.bottom.name}<br>${outfit.components.bottom.material} • ${outfit.components.bottom.fit}</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">SHOES</div>
+                            <div class="spec-value">${outfit.components.shoes.name}<br>${outfit.components.shoes.detail}</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">ACCESSORIES</div>
+                            <div class="spec-value">${outfit.components.accessories.join(', ')}</div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            
+            explorer.classList.add('active');
+        }
+
+        function closeExplorer() {
+            document.getElementById('outfit-explorer').classList.remove('active');
+        }
+
+        function openExploded(collection, index) {
+            const exploded = document.getElementById('exploded-view');
+            const container = document.getElementById('exploded-container');
+            const outfit = outfitData[collection][index];
+            
+            container.innerHTML = `
+                <div class="exploded-center">
+                    <div style="font-size: 7rem;">${outfit.icon}</div>
+                    <div class="exploded-outfit-name">${outfit.name}</div>
+                </div>
+                <div class="exploded-item">
+                    <div class="item-icon">👚</div>
+                    <div class="item-label">${outfit.components.top.name}</div>
+                    <div class="item-detail">${outfit.components.top.material}</div>
+                </div>
+                <div class="exploded-item">
+                    <div class="item-icon">👖</div>
+                    <div class="item-label">${outfit.components.bottom.name}</div>
+                    <div class="item-detail">${outfit.components.bottom.material}</div>
+                </div>
+                <div class="exploded-item">
+                    <div class="item-icon">👟</div>
+                    <div class="item-label">${outfit.components.shoes.name}</div>
+                    <div class="item-detail">${outfit.components.shoes.detail}</div>
+                </div>
+                <div class="exploded-item">
+                    <div class="item-icon">🎒</div>
+                    <div class="item-label">Accessories</div>
+                    <div class="item-detail">${outfit.components.accessories.join(', ')}</div>
+                </div>
+            `;
+            
+            exploded.classList.add('active');
+        }
+
+        function closeExploded() {
+            document.getElementById('exploded-view').classList.remove('active');
+        }
+
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -877,13 +1540,29 @@
             });
         });
 
-        // Vote button interaction
-        document.querySelectorAll('.vote-button').forEach(button => {
-            button.addEventListener('click', function() {
-                const form = document.querySelector('#join-form');
-                form.scrollIntoView({ behavior: 'smooth' });
+        // Form submission
+        document.getElementById('join-form').addEventListener('submit', function(e) {
+            setTimeout(() => {
+                alert('🎉 Welcome to the movement! Check your email for updates.');
+                this.reset();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 500);
+        });
+
+        // Update voting card selection
+        document.querySelectorAll('.voting-card').forEach(card => {
+            const checkbox = card.querySelector('input[type="checkbox"]');
+            checkbox.addEventListener('change', function() {
+                if (this.checked) {
+                    card.classList.add('selected');
+                } else {
+                    card.classList.remove('selected');
+                }
             });
         });
     </script>
 </body>
 </html>
+
+
+
