@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REWIND - Community-Voted Y2K Streetwear | Made in India</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@700&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --void-black: #0a0a0a;
+            --deep-black: #141414;
+            --medium-gray: #2a2a2a;
+            --light-gray: #888;
+            --off-white: #e8e8e8;
+            --accent-pink: #FF006E;
+            --accent-cyan: #00B4D8;
+            --accent-purple: #8B00FF;
+            --accent-green: #CCFF00;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--void-black);
+            color: var(--off-white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem 5%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Silkscreen', monospace;
+            font-size: 1.2rem;
+            color: var(--off-white);
+        }
+
+        .made-in-india {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent-green);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .india-flag {
+            width: 24px;
+            height: 16px;
+            background: linear-gradient(to bottom, #FF9933 33%, #ffffff 33%, #ffffff 66%, #138808 66%);
+            border-radius: 2px;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 5% 4rem;
+            position: relative;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .hero h1 {
+            font-family: 'Silkscreen', monospace;
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 0 var(--accent-cyan), -2px -2px 0 var(--accent-pink);
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            color: var(--light-gray);
+            font-weight: 300;
+            margin-bottom: 3rem;
+            line-height: 1.7;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1.2rem 3rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 700;
+            font-family: 'Space Grotesk', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary {
+            background: var(--accent-pink);
+            color: var(--void-black);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-purple);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 0, 110, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--off-white);
+            border: 2px solid var(--off-white);
+        }
+
+        .btn-secondary:hover {
+            background: var(--off-white);
+            color: var(--void-black);
+        }
+
+        /* Problem Section */
+        .problem-section {
+            padding: 6rem 5%;
+            background: var(--deep-black);
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-pink);
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title {
+            font-family: 'Silkscreen', monospace;
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 3rem;
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .problem-card {
+            background: rgba(255, 0, 0, 0.05);
+            border: 1px solid rgba(255, 0, 0, 0.2);
+            border-radius: 8px;
+            padding: 2rem;
+        }
+
+        .problem-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .problem-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: #ff4d6d;
+        }
+
+        .solution-card {
+            background: rgba(204, 255, 0, 0.05);
+            border: 1px solid rgba(204, 255, 0, 0.2);
+            border-radius: 8px;
+            padding: 2rem;
+        }
+
+        .solution-card h3 {
+            color: var(--accent-green);
+        }
+
+        .validation-badge {
+            background: var(--accent-purple);
+            color: var(--void-black);
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            font-weight: 700;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 6rem 5%;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .step-card {
+            text-align: center;
+        }
+
+        .step-number {
+            font-family: 'Silkscreen', monospace;
+            font-size: 3rem;
+            color: var(--accent-pink);
+            margin-bottom: 1rem;
+        }
+
+        .step-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Outfit Collection */
+        .outfit-collection {
+            padding: 6rem 5%;
+            background: var(--deep-black);
+        }
+
+        .outfit-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .outfit-card {
+            background: var(--medium-gray);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .outfit-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .outfit-image {
+            height: 350px;
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .outfit-info {
+            padding: 1.5rem;
+        }
+
+        .outfit-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .outfit-pieces {
+            font-size: 0.9rem;
+            color: var(--light-gray);
+            margin-bottom: 1rem;
+        }
+
+        .vote-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.8rem;
+            background: var(--accent-pink);
+            color: var(--void-black);
+            border: none;
+            border-radius: 4px;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .vote-count {
+            font-size: 0.85rem;
+            color: var(--light-gray);
+            margin-top: 0.5rem;
+            text-align: center;
+        }
+
+        /* Form Section */
+        .form-section {
+            padding: 6rem 5%;
+            background: var(--void-black);
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--deep-black);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 3rem;
+        }
+
+        .form-title {
+            font-family: 'Silkscreen', monospace;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--off-white);
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            background: var(--medium-gray);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            color: var(--off-white);
+            font-size: 1rem;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .checkbox-group label {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            cursor: pointer;
+        }
+
+        .checkbox-group input[type="checkbox"],
+        .radio-group input[type="radio"] {
+            width: auto;
+        }
+
+        .privacy-note {
+            font-size: 0.85rem;
+            color: var(--light-gray);
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        /* Transparency Section */
+        .transparency-section {
+            padding: 6rem 5%;
+            background: var(--deep-black);
+        }
+
+        .transparency-box {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(204, 255, 0, 0.05);
+            border: 2px solid var(--accent-green);
+            border-radius: 12px;
+            padding: 3rem;
+            text-align: center;
+        }
+
+        .transparency-title {
+            font-family: 'Silkscreen', monospace;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--accent-green);
+        }
+
+        .milestone-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .milestone {
+            text-align: center;
+        }
+
+        .milestone-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .milestone-text {
+            font-weight: 600;
+        }
+
+        /* Made in India Highlight */
+        .india-highlight {
+            background: linear-gradient(135deg, #FF9933 0%, #138808 100%);
+            padding: 4rem 5%;
+            text-align: center;
+        }
+
+        .india-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .india-content h2 {
+            font-family: 'Silkscreen', monospace;
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+
+        .india-content p {
+            font-size: 1.2rem;
+            color: white;
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 5% 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-brand h3 {
+            font-family: 'Silkscreen', monospace;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links h4 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: var(--light-gray);
+            text-decoration: none;
+            display: block;
+            padding: 0.3rem 0;
+        }
+
+        .footer-links a:hover {
+            color: var(--off-white);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: var(--light-gray);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .cta-buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+
+            .outfit-grid,
+            .problem-grid,
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">REWIND</div>
+            <div class="made-in-india">
+                <div class="india-flag"></div>
+                Made in India
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>You don't follow trends. You create them.</h1>
+            <p class="hero-subtitle">
+                Help us validate community-voted Y2K streetwear. Vote on designs. Shape what gets made. 
+                <strong>Proudly designed and manufactured in India.</strong>
+            </p>
+            <div class="cta-buttons">
+                <a href="#join-form" class="btn btn-primary">Join Voting Preview →</a>
+                <a href="#how-it-works" class="btn btn-secondary">See How It Works ↓</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem-section">
+        <div class="section-container">
+            <div class="section-label">Why REWIND?</div>
+            <h2 class="section-title">The Problem With Fast Fashion</h2>
+            
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <div class="problem-icon">❌</div>
+                    <h3>2,000+ Designs Per Week</h3>
+                    <p>Fast fashion makes thousands of designs weekly and throws away 85% unsold. Pure waste.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">❌</div>
+                    <h3>You Get What's Cheapest</h3>
+                    <p>Not what you actually want. Brands decide, you settle.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">❌</div>
+                    <h3>Designed to Make You Buy More</h3>
+                    <p>Shein's entire model exists to push quantity over quality. More buying, less wearing.</p>
+                </div>
+            </div>
+
+            <h2 class="section-title">REWIND's Solution</h2>
+            
+            <div class="problem-grid">
+                <div class="solution-card">
+                    <div class="problem-icon">✓</div>
+                    <h3>What Do YOU Want to Wear?</h3>
+                    <p>Community decides every design. No corporate guessing.</p>
+                </div>
+                <div class="solution-card">
+                    <div class="problem-icon">✓</div>
+                    <h3>Voting Shapes Every Design</h3>
+                    <p>Your vote determines what gets produced. Real co-creation.</p>
+                </div>
+                <div class="solution-card">
+                    <div class="problem-icon">✓</div>
+                    <h3>Made-to-Order = Zero Waste</h3>
+                    <p>We only make what you order. Maximum intention, zero excess.</p>
+                </div>
+            </div>
+
+            <div class="validation-badge">
+                We're testing if Gen Z actually wants to co-create fashion. 
+                Help us prove corporations wrong. <strong>Join India's first community-voted streetwear brand.</strong>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="section-container">
+            <div class="section-label">The Process</div>
+            <h2 class="section-title">How It Works</h2>
+            
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">01</div>
+                    <h3>Join Community</h3>
+                    <p>Sign up to access voting and help shape our first collection</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">02</div>
+                    <h3>Vote on Designs</h3>
+                    <p>Choose which Y2K styles we produce first. Your vote matters.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">03</div>
+                    <h3>We Produce</h3>
+                    <p>Top-voted designs get manufactured in India, made-to-order only</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">04</div>
+                    <h3>You Wear It</h3>
+                    <p>Get exactly what you voted for. No waste, pure intention.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Outfit Collection -->
+    <section class="outfit-collection">
+        <div class="section-container">
+            <div class="section-label">First Collection Preview</div>
+            <h2 class="section-title">Vote on Which Styles We Produce First</h2>
+            <p style="max-width: 700px; margin: 0 auto 0; color: var(--light-gray);">
+                These are concept directions. Your votes decide what we actually make in India. 
+                Join our community to vote on the final designs.
+            </p>
+
+            <div class="outfit-grid">
+                <div class="outfit-card">
+                    <div class="outfit-image" style="background: linear-gradient(135deg, #FF006E, #000);">🔥</div>
+                    <div class="outfit-info">
+                        <div class="outfit-name">Neon Rebel</div>
+                        <div class="outfit-pieces">Oversized graphic tee • Baggy cargos • Chunky sneakers • Beaded bag</div>
+                        <button class="vote-button">❤️ Vote for This Style</button>
+                        <div class="vote-count">127 votes</div>
+                    </div>
+                </div>
+
+                <div class="outfit-card">
+                    <div class="outfit-image" style="background: linear-gradient(135deg, #CCFF00, #8B00FF);">⚡</div>
+                    <div class="outfit-info">
+                        <div class="outfit-name">Cyber Grunge</div>
+                        <div class="outfit-pieces">Cropped hoodie • Wide-leg jeans • Platform shoes • Mini backpack</div>
+                        <button class="vote-button">❤️ Vote for This Style</button>
+                        <div class="vote-count">89 votes</div>
+                    </div>
+                </div>
+
+                <div class="outfit-card">
+                    <div class="outfit-image" style="background: linear-gradient(135deg, #00B4D8, #2a2a2a);">💜</div>
+                    <div class="outfit-info">
+                        <div class="outfit-name">Y2K Nostalgia</div>
+                        <div class="outfit-pieces">Oversized flannel • Bike shorts • High-tops • Bucket hat</div>
+                        <button class="vote-button">❤️ Vote for This Style</button>
+                        <div class="vote-count">156 votes</div>
+                    </div>
+                </div>
+
+                <div class="outfit-card">
+                    <div class="outfit-image" style="background: linear-gradient(135deg, #FF1493, #FFB6C1);">✨</div>
+                    <div class="outfit-info">
+                        <div class="outfit-name">Playful Edge</div>
+                        <div class="outfit-pieces">Baby tee • Low-rise pants • Chunky sandals • Statement belt</div>
+                        <button class="vote-button">❤️ Vote for This Style</button>
+                        <div class="vote-count">203 votes</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Form Section -->
+    <section class="form-section" id="join-form">
+        <div class="form-container">
+            <h2 class="form-title">Join REWIND Early Community</h2>
+            
+            <form>
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" placeholder="your@email.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="city">City *</label>
+                    <select id="city" required>
+                        <option value="">Select your city</option>
+                        <option value="delhi">Delhi</option>
+                        <option value="mumbai">Mumbai</option>
+                        <option value="bangalore">Bangalore</option>
+                        <option value="pune">Pune</option>
+                        <option value="hyderabad">Hyderabad</option>
+                        <option value="chennai">Chennai</option>
+                        <option value="kolkata">Kolkata</option>
+                        <option value="ahmedabad">Ahmedabad</option>
+                        <option value="jaipur">Jaipur</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>I'm interested in: *</label>
+                    <div class="checkbox-group">
+                        <label>
+                            <input type="checkbox" name="interest" value="voting"> 
+                            Voting on designs
+                        </label>
+                        <label>
+                            <input type="checkbox" name="interest" value="launch"> 
+                            Getting launch updates
+                        </label>
+                        <label>
+                            <input type="checkbox" name="interest" value="pricing"> 
+                            Knowing pricing when announced
+                        </label>
+                        <label>
+                            <input type="checkbox" name="interest" value="influencer"> 
+                            Partnering as micro-influencer
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Which style resonates most? *</label>
+                    <div class="checkbox-group radio-group">
+                        <label>
+                            <input type="radio" name="style" value="neon-rebel" required> 
+                            Neon Rebel
+                        </label>
+                        <label>
+                            <input type="radio" name="style" value="cyber-grunge"> 
+                            Cyber Grunge
+                        </label>
+                        <label>
+                            <input type="radio" name="style" value="y2k-nostalgia"> 
+                            Y2K Nostalgia
+                        </label>
+                        <label>
+                            <input type="radio" name="style" value="playful-edge"> 
+                            Playful Edge
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
+                    Join Voting Preview
+                </button>
+
+                <p class="privacy-note">
+                    We'll only email you about voting and launch updates. No spam. Unsubscribe anytime.
+                </p>
+            </form>
+        </div>
+    </section>
+
+    <!-- Transparency Section -->
+    <section class="transparency-section">
+        <div class="section-container">
+            <div class="transparency-box">
+                <h2 class="transparency-title">No Prices Yet. Here's Why.</h2>
+                <p style="font-size: 1.1rem; margin-bottom: 2rem;">
+                    We're testing if you actually want community-voted fashion before we commit to production.
+                </p>
+
+                <div class="milestone-grid">
+                    <div class="milestone">
+                        <div class="milestone-icon">📊</div>
+                        <div class="milestone-text">Announce Pricing</div>
+                    </div>
+                    <div class="milestone">
+                        <div class="milestone-icon">🗳️</div>
+                        <div class="milestone-text">Launch First Vote</div>
+                    </div>
+                    <div class="milestone">
+                        <div class="milestone-icon">👕</div>
+                        <div class="milestone-text">Produce in India</div>
+                    </div>
+                </div>
+
+                <p style="font-size: 1.05rem; margin-bottom: 2rem;">
+                    Once we have <strong>200 committed community members</strong>, we'll activate these milestones.
+                </p>
+
+                <p style="font-size: 1.1rem; font-weight: 600;">
+                    Transparency matters. We're building this WITH you, not FOR you.
+                </p>
+
+                <a href="#join-form" class="btn btn-primary" style="margin-top: 2rem; display: inline-block;">
+                    Be One of the 200 →
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Made in India Highlight -->
+    <section class="india-highlight">
+        <div class="india-content">
+            <h2>🇮🇳 Proudly Made in India</h2>
+            <p>
+                Every REWIND piece is designed in India, manufactured in India, and shipped from India. 
+                We're building a homegrown fashion brand that puts community and sustainability first. 
+                Supporting REWIND means supporting Indian manufacturing, Indian creativity, and Indian youth culture.
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>REWIND</h3>
+                <p>Community-voted Y2K streetwear. Made in India. Zero waste.</p>
+                <div class="made-in-india" style="margin-top: 1rem;">
+                    <div class="india-flag"></div>
+                    Made in India
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="https://thevoidcollective.shop">The Void Collective</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#join-form">Join Community</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="mailto:hello@thevoidcollective.shop">Email</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 REWIND by The Void Collective. Made in India with ❤️</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Vote button interaction
+        document.querySelectorAll('.vote-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const form = document.querySelector('#join-form');
+                form.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
