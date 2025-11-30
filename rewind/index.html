@@ -3,10 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>REWIND - Y2K Streetwear Re-Imagined | Join the Movement</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@700&family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>REWIND | Y2K Streetwear Re-Imagined</title>
+    <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -15,1554 +13,2289 @@
         }
 
         :root {
-            --bg: #0f0f0f;
-            --bg-card: #1a1a1a;
-            --text: #f0f0f0;
-            --text-dim: #a0a0a0;
-            --pink: #ff80b5;
-            --cyan: #4dd4f0;
-            --green: #d4ff80;
-            --purple: #b380ff;
+            --white: #fdfbf7;
+            --bg: #f8f6f2;
+            --dark: #0a0a0a;
+            --text: #141414;
+            --text-light: #666666;
+            --pink: #FF006E;
+            --cyan: #00B4D8;
+            --green: #CCFF00;
+            --border: rgba(0,0,0,0.1);
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg);
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--white);
             color: var(--text);
-            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
+        /* Y2K Cursor - Glitter */
+        .cursor {
+            width: 24px;
+            height: 24px;
+            position: fixed;
+            pointer-events: none;
+            z-index: 999999;
+            transform: translate(-50%, -50%);
+            transition: all 0.1s ease;
+            font-size: 24px;
+        }
+
+        .cursor::before {
+            content: '✨';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: sparkle 1.5s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { 
+                transform: translate(-50%, -50%) scale(1);
                 opacity: 1;
-                transform: translateY(0);
+            }
+            50% { 
+                transform: translate(-50%, -50%) scale(1.3);
+                opacity: 0.7;
             }
         }
 
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+        .cursor.hover {
+            font-size: 32px;
+        }
+
+        .cursor.hover::before {
+            animation: sparkle 0.8s ease-in-out infinite;
+        }
+
+        /* Y2K Background */
+        .bg-shape {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.15;
+            z-index: -1;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .bg-shape:nth-child(1) {
+            width: 400px;
+            height: 400px;
+            background: var(--pink);
+            top: 10%;
+            left: 15%;
+        }
+
+        .bg-shape:nth-child(2) {
+            width: 350px;
+            height: 350px;
+            background: var(--cyan);
+            top: 60%;
+            right: 20%;
+            animation-delay: 5s;
+        }
+
+        .bg-shape:nth-child(3) {
+            width: 300px;
+            height: 300px;
+            background: var(--green);
+            bottom: 10%;
+            left: 30%;
+            animation-delay: 10s;
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(30px, -30px); }
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        @keyframes shimmer {
-            0% { background-position: -100% 0; }
-            100% { background-position: 200% 0; }
-        }
-
-        .fade-in {
-            animation: fadeInUp 0.8s ease-out forwards;
-        }
-
-        .slide-in {
-            animation: slideIn 0.8s ease-out forwards;
-        }
-
-        /* Header */
+        /* Header - Centered Logo */
         header {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(15, 15, 15, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            border-bottom: 2px solid var(--border);
             padding: 1rem 5%;
-            z-index: 1000;
-            transition: all 0.3s;
+            z-index: 9000;
         }
 
-        nav {
+        .header-content {
             max-width: 1600px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr auto 1fr;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .nav-left {
-            justify-self: start;
-        }
-
-        .nav-center {
-            justify-self: center;
-        }
-
-        .nav-right {
-            justify-self: end;
             display: flex;
-            gap: 2rem;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
         .logo {
             font-family: 'Silkscreen', monospace;
             font-size: 1.5rem;
-            background: linear-gradient(135deg, var(--pink), var(--cyan), var(--green), var(--purple));
+            font-weight: 700;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, var(--pink), var(--cyan), var(--green));
             background-size: 200% 200%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: shimmer 3s linear infinite;
+            animation: gradientShift 3s ease infinite;
         }
 
-        .nav-link {
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
             color: var(--text);
             text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s;
-            position: relative;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s;
         }
 
-        .nav-link:hover {
+        .nav-links a:hover {
             color: var(--pink);
-            transform: translateY(-2px);
         }
 
-        /* Hero Collections */
-        .hero {
-            padding: 8rem 5% 2rem;
+        .header-right {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .header-right a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .header-right a:hover {
+            color: var(--pink);
+        }
+
+        /* Main */
+        main {
+            margin-top: 90px;
+            padding: 2rem 5%;
             max-width: 1600px;
-            margin: 0 auto;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Hero */
+        .hero-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 6rem;
+        }
+
+        .glass-box {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(20px);
+            border: 2px solid var(--border);
+            border-radius: 24px;
+            padding: 3rem;
+        }
+
+        .hero-glass h1 {
+            font-family: 'Silkscreen', monospace;
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
+        }
+
+        .hero-glass h1 .colored {
+            background: linear-gradient(135deg, var(--pink), var(--cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+
+        .ai-badge {
+            background: linear-gradient(135deg, var(--green), var(--cyan));
+            color: var(--dark);
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        .key-points {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .point {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 1.05rem;
+        }
+
+        .check { color: var(--green); font-size: 1.4rem; }
+        .cross { color: var(--pink); font-size: 1.4rem; }
+
+        /* Comparison */
+        .comparison-title {
+            font-family: 'Silkscreen', monospace;
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            letter-spacing: 2px;
+        }
+
+        .comparison-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 12px;
+        }
+
+        .comp-item {
+            padding: 1rem;
+            border-radius: 8px;
+        }
+
+        .comp-item h3 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .comp-item p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        .rewind-side {
+            background: rgba(204, 255, 0, 0.1);
+        }
+
+        .other-side {
+            background: rgba(255, 0, 110, 0.05);
+        }
+
+        /* Collections */
+        .section-title {
+            font-family: 'Silkscreen', monospace;
+            font-size: 2.5rem;
+            text-align: center;
+            margin: 4rem 0 2rem 0;
+            letter-spacing: 2px;
         }
 
         .collections-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-            height: 500px;
+            gap: 2rem;
+            margin-bottom: 6rem;
         }
 
-        .collection-box {
-            position: relative;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.4s ease;
-            animation: fadeInUp 0.8s ease-out forwards;
-        }
-
-        .collection-box:nth-child(1) { animation-delay: 0.1s; }
-        .collection-box:nth-child(2) { animation-delay: 0.2s; }
-        .collection-box:nth-child(3) { animation-delay: 0.3s; }
-
-        .collection-box:hover {
-            border-color: var(--pink);
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(255, 128, 181, 0.3);
-        }
-
-        .collection-image {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, var(--bg-card), #242424);
-            position: relative;
-            transition: all 0.5s ease;
-        }
-
-        .collection-placeholder {
-            text-align: center;
+        .collection-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(20px);
+            border: 2px solid var(--border);
+            border-radius: 16px;
             padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .collection-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--pink);
+        }
+
+        .vote-btn-small {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--green);
+            color: var(--dark);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            cursor: pointer;
             transition: all 0.3s;
         }
 
-        .collection-box:hover .collection-placeholder {
+        .vote-btn-small:hover {
             transform: scale(1.1);
         }
 
         .collection-icon {
-            font-size: 5rem;
+            font-size: 4rem;
             margin-bottom: 1rem;
+        }
+
+        .collection-name {
+            font-family: 'Silkscreen', monospace;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        .collection-desc {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* Carousel Collection */
+        .carousel-collection {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 3rem;
+            cursor: pointer;
+            transition: all 0.5s ease;
+            min-height: 500px;
+        }
+
+        .carousel-icon {
+            font-size: 8rem;
+            margin-bottom: 2rem;
             animation: float 3s ease-in-out infinite;
         }
 
-        .collection-box:nth-child(1) .collection-icon { animation-delay: 0s; }
-        .collection-box:nth-child(2) .collection-icon { animation-delay: 0.5s; }
-        .collection-box:nth-child(3) .collection-icon { animation-delay: 1s; }
-
-        .collection-name {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text);
-            margin-bottom: 0.5rem;
-        }
-
-        .collection-subtitle {
-            font-size: 0.9rem;
-            color: var(--text-dim);
-        }
-
-        .hero-text {
-            text-align: center;
-            padding: 2rem;
-            background: var(--bg-card);
-            border-radius: 12px;
-            margin-bottom: 2rem;
-            animation: fadeInUp 0.8s ease-out 0.4s forwards;
-            opacity: 0;
-        }
-
-        .hero-text h1 {
+        .carousel-title {
             font-family: 'Silkscreen', monospace;
-            font-size: clamp(2rem, 5vw, 3rem);
+            font-size: 2rem;
             margin-bottom: 1rem;
-        }
-
-        .hero-text p {
-            font-size: 1.1rem;
-            color: var(--text-dim);
-        }
-
-        /* CTA Section - Prominent */
-        .cta-section {
-            text-align: center;
-            padding: 2.5rem;
-            background: linear-gradient(135deg, rgba(255, 128, 181, 0.15), rgba(77, 212, 240, 0.15));
-            border-radius: 12px;
-            border: 2px solid var(--pink);
-            animation: fadeInUp 0.8s ease-out 0.5s forwards, pulse 2s ease-in-out 1s infinite;
-            opacity: 0;
-        }
-
-        .btn-movement {
-            padding: 1.5rem 4rem;
-            background: var(--pink);
-            color: var(--bg);
-            border: none;
-            border-radius: 8px;
-            font-size: 1.2rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-decoration: none;
-            display: inline-block;
-            margin-bottom: 1.5rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-movement::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-
-        .btn-movement:hover::before {
-            width: 300px;
-            height: 300px;
-        }
-
-        .btn-movement:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(255, 128, 181, 0.5);
-        }
-
-        .counter {
-            font-size: 1.2rem;
-            color: var(--text);
-            line-height: 1.8;
-        }
-
-        .counter strong {
-            color: var(--green);
-            font-size: 1.3rem;
-        }
-
-        /* About Sections */
-        section {
-            padding: 4rem 5%;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 3rem;
-            animation: fadeInUp 0.8s ease-out forwards;
-        }
-
-        .section-label {
-            font-size: 0.85rem;
-            color: var(--cyan);
-            text-transform: uppercase;
             letter-spacing: 2px;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
         }
 
-        .section-title {
-            font-family: 'Silkscreen', monospace;
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
-            margin-bottom: 1rem;
+        .carousel-desc {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
         }
 
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .info-card {
-            background: var(--bg-card);
-            padding: 2.5rem;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.4s ease;
-            animation: fadeInUp 0.8s ease-out forwards;
-        }
-
-        .info-card:nth-child(1) { animation-delay: 0.1s; }
-        .info-card:nth-child(2) { animation-delay: 0.2s; }
-        .info-card:nth-child(3) { animation-delay: 0.3s; }
-
-        .info-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--cyan);
-            box-shadow: 0 15px 30px rgba(77, 212, 240, 0.2);
-        }
-
-        .info-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .info-card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
-        }
-
-        .info-card p {
-            color: var(--text-dim);
-            line-height: 1.8;
-        }
-
-        .highlight {
-            color: var(--green);
-            font-weight: 600;
-        }
-
-        /* Collection Voting Section */
-        .voting-section {
-            background: var(--bg-card);
-            padding: 4rem 5%;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .voting-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .voting-card {
-            background: var(--bg);
-            border-radius: 12px;
-            overflow: hidden;
-            border: 2px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.4s ease;
+        .carousel-vote-btn {
+            background: linear-gradient(135deg, var(--pink), var(--cyan));
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
             cursor: pointer;
-            animation: fadeInUp 0.8s ease-out forwards;
-        }
-
-        .voting-card:nth-child(1) { animation-delay: 0.1s; }
-        .voting-card:nth-child(2) { animation-delay: 0.2s; }
-        .voting-card:nth-child(3) { animation-delay: 0.3s; }
-
-        .voting-card:hover {
-            border-color: var(--pink);
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(255, 128, 181, 0.3);
-        }
-
-        .voting-card.selected {
-            border-color: var(--green);
-            box-shadow: 0 0 40px rgba(212, 255, 128, 0.4);
-        }
-
-        .voting-image {
-            height: 300px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #1a1a1a, #242424);
             transition: all 0.3s;
+            margin-bottom: 2rem;
         }
 
-        .voting-card:hover .voting-image {
+        .carousel-vote-btn:hover {
             transform: scale(1.05);
         }
 
-        .voting-info {
-            padding: 1.5rem;
-        }
-
-        .voting-info h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .voting-info p {
-            color: var(--text-dim);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-
-        .vote-checkbox {
+        .carousel-dots {
             display: flex;
-            align-items: center;
             gap: 0.8rem;
-            padding: 0.8rem;
-            background: var(--bg-card);
-            border-radius: 6px;
+            justify-content: center;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--border);
+            cursor: pointer;
             transition: all 0.3s;
         }
 
-        .vote-checkbox:hover {
-            background: #242424;
+        .dot.active {
+            background: var(--pink);
+            transform: scale(1.3);
         }
 
-        /* Outfit Explorer Modal */
-        .outfit-explorer {
+        .dot:hover {
+            background: var(--cyan);
+        }
+
+        /* Glitch effect for hero title */
+        .glitch {
+            font-family: 'Silkscreen', monospace;
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: #0a0a0a;
+            text-shadow: 
+                2px 2px 0px var(--cyan),
+                -2px -2px 0px var(--pink);
+            animation: glitch 1s ease-in-out infinite;
+        }
+
+        @keyframes glitch {
+            0%, 100% { 
+                text-shadow: 2px 2px 0px var(--cyan), -2px -2px 0px var(--pink);
+            }
+            25% {
+                text-shadow: -2px 2px 0px var(--cyan), 2px -2px 0px var(--pink);
+            }
+            50% {
+                text-shadow: 2px -2px 0px var(--cyan), -2px 2px 0px var(--pink);
+            }
+            75% {
+                text-shadow: -2px -2px 0px var(--cyan), 2px 2px 0px var(--pink);
+            }
+        }
+
+        /* Modal */
+        .modal {
             display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 2000;
-            overflow-y: auto;
+            background: rgba(0,0,0,0.5);
+            z-index: 10000;
             padding: 2rem;
+            overflow-y: auto;
         }
 
-        .outfit-explorer.active {
+        .modal.active {
             display: flex;
-            flex-direction: column;
             align-items: center;
-            justify-content: flex-start;
-            animation: fadeInUp 0.3s ease-out;
+            justify-content: center;
         }
 
-        .explorer-header {
-            width: 100%;
+        .modal-content {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 2px solid var(--border);
+            border-radius: 24px;
+            padding: 3rem;
             max-width: 1200px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
+            width: 100%;
+            position: relative;
         }
 
-        .close-explorer {
-            background: var(--pink);
-            color: var(--bg);
+        .close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--dark);
+            color: white;
             border: none;
-            padding: 0.8rem 1.5rem;
-            border-radius: 6px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.5rem;
             cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s;
+            z-index: 10;
         }
 
-        .close-explorer:hover {
-            transform: scale(1.05);
+        .close-btn:hover {
+            background: var(--pink);
+        }
+
+        .modal-title {
+            font-family: 'Silkscreen', monospace;
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            letter-spacing: 2px;
         }
 
         .outfits-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
-            max-width: 1200px;
-            width: 100%;
         }
 
         .outfit-card {
-            background: var(--bg-card);
-            border-radius: 12px;
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 16px;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.4s ease;
             cursor: pointer;
+            transition: all 0.3s;
             position: relative;
-            animation: fadeInUp 0.5s ease-out forwards;
         }
 
-        .outfit-card:nth-child(1) { animation-delay: 0.1s; }
-        .outfit-card:nth-child(2) { animation-delay: 0.2s; }
-        .outfit-card:nth-child(3) { animation-delay: 0.3s; }
-        .outfit-card:nth-child(4) { animation-delay: 0.4s; }
-
         .outfit-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-5px);
             border-color: var(--cyan);
-            box-shadow: 0 20px 40px rgba(77, 212, 240, 0.3);
         }
 
         .outfit-image {
-            height: 320px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #1a1a1a, #242424);
-            font-size: 5rem;
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
         }
 
-        .outfit-details {
+        .outfit-info {
             padding: 1.5rem;
         }
 
         .outfit-name {
-            font-size: 1.3rem;
             font-weight: 700;
-            margin-bottom: 0.8rem;
-            color: var(--pink);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
         }
 
-        .outfit-component {
-            margin-bottom: 0.6rem;
-            font-size: 0.85rem;
-            color: var(--text-dim);
+        .outfit-desc {
+            color: var(--text-light);
+            font-size: 0.9rem;
         }
 
-        .outfit-specs {
-            display: none;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(15, 15, 15, 0.98);
-            padding: 2rem;
-            overflow-y: auto;
-            animation: fadeInUp 0.3s ease-out;
+        .votes {
+            color: var(--green);
+            font-weight: 700;
+            margin-top: 0.8rem;
         }
 
-        .outfit-card:hover .outfit-specs {
-            display: block;
-        }
-
-        .spec-item {
-            margin-bottom: 1.2rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .spec-label {
-            font-size: 0.75rem;
-            color: var(--cyan);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 0.3rem;
-        }
-
-        .spec-value {
-            font-size: 0.95rem;
-            color: var(--text);
-            font-weight: 600;
-            line-height: 1.5;
-        }
-
-        /* Exploded View */
-        .exploded-view {
+        /* Exploded View - Floating Glass 80% */
+        .exploded {
             display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.98);
-            z-index: 3000;
-            overflow: hidden;
+            background: rgba(0,0,0,0.6);
+            z-index: 10001;
+            padding: 2rem;
         }
 
-        .exploded-view.active {
-            display: block;
-            animation: fadeInUp 0.3s ease-out;
+        .exploded.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .exploded-glass {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(30px);
+            border: 2px solid var(--border);
+            border-radius: 24px;
+            width: 80%;
+            max-width: 1400px;
+            height: 85vh;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
         }
 
         .exploded-container {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .exploded-center {
-            width: 450px;
-            height: 550px;
-            background: linear-gradient(135deg, #1a1a1a, #242424);
-            border-radius: 16px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            border: 3px solid var(--pink);
-            z-index: 10;
-            padding: 2rem;
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        .exploded-outfit-name {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-top: 1rem;
-            color: var(--pink);
-        }
-
-        .exploded-item {
-            position: absolute;
-            width: 180px;
-            height: 180px;
-            background: var(--bg-card);
-            border-radius: 12px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
             padding: 1.5rem;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            animation: float 3s ease-in-out infinite;
-            transition: all 0.3s;
-        }
-
-        .exploded-item:hover {
-            transform: scale(1.1);
-            border-color: var(--cyan);
-        }
-
-        .exploded-item:nth-child(2) { top: 10%; left: 10%; animation-delay: 0s; }
-        .exploded-item:nth-child(3) { top: 10%; right: 10%; animation-delay: 0.5s; }
-        .exploded-item:nth-child(4) { bottom: 10%; left: 10%; animation-delay: 1s; }
-        .exploded-item:nth-child(5) { bottom: 10%; right: 10%; animation-delay: 1.5s; }
-
-        .item-icon {
-            font-size: 3.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .item-label {
-            font-size: 0.9rem;
-            font-weight: 600;
-            text-align: center;
-            color: var(--text);
-        }
-
-        .item-detail {
-            font-size: 0.75rem;
-            color: var(--text-dim);
-            text-align: center;
-            margin-top: 0.3rem;
-        }
-
-        .close-exploded {
-            position: absolute;
-            top: 2rem;
-            right: 2rem;
-            background: var(--pink);
-            color: var(--bg);
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 700;
-            z-index: 20;
-            transition: all 0.3s;
-        }
-
-        .close-exploded:hover {
-            transform: scale(1.1);
-        }
-
-        /* Form Section */
-        .form-section {
-            max-width: 1200px;
+            height: 100%;
+            overflow-y: auto;
+            max-width: 95%;
             margin: 0 auto;
         }
 
-        .form-with-images {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
+        .exploded-left {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
         }
 
-        .form-images {
-            display: grid;
+        .exploded-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.3rem;
+        }
+
+        .exploded-title-group {
+            flex: 1;
+        }
+
+        .exploded-vote-btn {
+            background: var(--green);
+            color: var(--dark);
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            border: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .exploded-vote-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .exploded-title {
+            font-family: 'Silkscreen', monospace;
+            font-size: 1.8rem;
+            margin-bottom: 0.3rem;
+            letter-spacing: 1px;
+            background: linear-gradient(135deg, var(--pink), var(--cyan), var(--green), var(--pink));
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientFlow 4s ease infinite;
+        }
+
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .exploded-subtitle {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .detail-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .detail-header {
+            font-family: 'Silkscreen', monospace;
+            font-size: 1rem;
+            color: var(--cyan);
+            margin-bottom: 1rem;
+        }
+
+        .detail-list {
+            list-style: none;
+        }
+
+        .detail-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
             gap: 1rem;
         }
 
-        .form-image {
-            height: 200px;
-            border-radius: 12px;
-            background: var(--bg-card);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.3s;
-        }
-
-        .form-image:hover {
-            transform: scale(1.02);
-            border-color: var(--pink);
-        }
-
-        .form-container {
-            background: var(--bg-card);
-            padding: 2.5rem;
-            border-radius: 12px;
+        .sustainability-box {
+            grid-column: 1 / -1;
+            background: rgba(204, 255, 0, 0.1);
             border: 2px solid var(--green);
+            border-radius: 12px;
+            padding: 0.8rem 1.2rem;
+            margin-top: 1rem;
         }
 
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-
-        .form-input,
-        .form-select,
-        .form-textarea {
+        .sustainability-box-full {
+            grid-column: 1 / -1;
+            background: rgba(204, 255, 0, 0.1);
+            border: 2px solid var(--green);
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            margin-top: 1rem;
             width: 100%;
-            padding: 0.9rem;
-            background: var(--bg);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 6px;
-            color: var(--text);
-            font-size: 1rem;
-            font-family: inherit;
-            transition: all 0.3s;
         }
 
-        .form-textarea {
-            min-height: 100px;
-            resize: vertical;
-        }
-
-        .form-input:focus,
-        .form-select:focus,
-        .form-textarea:focus {
-            outline: none;
-            border-color: var(--green);
-            box-shadow: 0 0 0 3px rgba(212, 255, 128, 0.1);
-        }
-
-        .benefits-box {
-            background: rgba(212, 255, 128, 0.1);
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-            border: 1px solid var(--green);
-        }
-
-        .benefits-box h4 {
-            color: var(--green);
+        .sustainability-box h3,
+        .sustainability-box-full h3 {
+            font-family: 'Silkscreen', monospace;
+            font-size: 0.85rem;
+            color: var(--dark);
             margin-bottom: 0.8rem;
         }
 
-        .benefits-box ul {
+        .sustainability-list {
             list-style: none;
-            padding-left: 0;
-        }
-
-        .benefits-box li {
-            padding: 0.5rem 0;
-            padding-left: 1.5rem;
-            position: relative;
-        }
-
-        .benefits-box li:before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: var(--green);
-            font-weight: 700;
-        }
-
-        .outfit-selection {
             display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 0.8rem;
         }
 
-        .outfit-option {
+        .sustainability-list li {
             display: flex;
             align-items: center;
-            gap: 0.8rem;
-            padding: 0.9rem;
-            background: var(--bg);
-            border-radius: 6px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.3s;
-            cursor: pointer;
+            gap: 0.3rem;
+            padding: 0.2rem;
+            font-size: 0.85rem;
         }
 
-        .outfit-option:hover {
-            background: #1a1a1a;
+        .feedback-section {
+            margin-top: 1.5rem;
+        }
+
+        .feedback-input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.9rem;
+            resize: vertical;
+            min-height: 60px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .cta-btn {
+            background: var(--dark);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .cta-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .cta-vote {
+            background: linear-gradient(135deg, var(--pink), var(--cyan));
+            flex: 1;
+        }
+
+        .exploded-right {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .vote-buttons-row {
+            display: flex;
+            gap: 1rem;
+            width: 100%;
+            margin-bottom: 0;
+            justify-content: center;
+            flex-wrap: nowrap;
+            align-items: center;
+        }
+
+        .vote-badge {
+            background: var(--green);
+            color: var(--dark);
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            text-align: center;
+            font-family: 'Silkscreen', monospace;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .vote-btn-exploded {
+            background: linear-gradient(135deg, var(--pink), var(--cyan));
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            text-align: center;
+            font-family: 'Silkscreen', monospace;
+            font-size: 0.85rem;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .vote-btn-exploded:hover {
+            transform: scale(1.05);
+        }
+
+        .collection-badge-small {
+            background: linear-gradient(135deg, var(--pink), var(--cyan));
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-family: 'Silkscreen', monospace;
+            font-size: 0.7rem;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .exploded-image {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        /* Navigation Arrows */
+        .nav-arrows {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 1rem;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+        .nav-arrow {
+            background: var(--dark);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            pointer-events: all;
+            transition: all 0.3s;
+        }
+
+        .nav-arrow:hover {
+            background: var(--pink);
+            transform: scale(1.1);
+        }
+
+        /* Vote Form Modal */
+        .vote-form-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 10002;
+            padding: 1rem;
+            overflow-y: auto;
+        }
+
+        .vote-form-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .vote-form {
+            background: rgba(253, 251, 247, 0.96);
+            border: 3px solid var(--pink);
+            border-radius: 20px;
+            padding: 1.5rem;
+            max-width: 900px;
+            width: 95%;
+            max-height: 85vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 0 30px rgba(255,0,110,0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .form-title {
+            font-family: 'Silkscreen', monospace;
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--pink), var(--cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .form-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 0.8rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .form-group {
+            margin-bottom: 0.8rem;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group.two-third {
+            grid-column: span 2;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            font-size: 0.8rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.6rem;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.85rem;
+            transition: border-color 0.3s;
+            background: white;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
             border-color: var(--pink);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 50px;
+        }
+
+        .phone-group {
+            display: grid;
+            grid-template-columns: 90px 1fr;
+            gap: 0.5rem;
+        }
+
+        .collection-checkboxes {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: white;
+            font-size: 0.85rem;
+        }
+
+        .checkbox-label:hover {
+            border-color: var(--pink);
+        }
+
+        .checkbox-label input[type="checkbox"] {
+            width: auto;
+            margin: 0;
+        }
+
+        .outfit-section {
+            display: none;
+            margin-top: 0.5rem;
+            padding: 0.8rem;
+            background: rgba(255,255,255,0.5);
+            border-radius: 10px;
+        }
+
+        .outfit-section.active {
+            display: block;
+        }
+
+        .outfit-section label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .outfit-checkboxes {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+        }
+
+        .privacy-note {
+            background: rgba(204, 255, 0, 0.2);
+            border: 2px solid var(--green);
+            padding: 0.6rem;
+            border-radius: 10px;
+            font-size: 0.75rem;
+            color: var(--dark);
+            font-weight: 600;
+            margin-bottom: 0.8rem;
         }
 
         .submit-btn {
             width: 100%;
-            padding: 1.3rem;
-            background: var(--green);
-            color: var(--bg);
+            background: linear-gradient(135deg, var(--pink), var(--cyan));
+            color: white;
+            padding: 0.8rem;
             border: none;
-            border-radius: 8px;
+            border-radius: 50px;
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 0.95rem;
             cursor: pointer;
             transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .submit-btn::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-
-        .submit-btn:hover::before {
-            width: 400px;
-            height: 400px;
+            box-shadow: 0 4px 15px rgba(255,0,110,0.3);
         }
 
         .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(212, 255, 128, 0.5);
+            transform: scale(1.02);
+            box-shadow: 0 6px 20px rgba(255,0,110,0.4);
         }
 
-        /* Footer */
-        footer {
-            padding: 3rem 5%;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        .y2k-star {
+            position: absolute;
+            font-size: 1.5rem;
+            opacity: 0.3;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .star-1 { top: 10px; right: 20px; animation-delay: 0s; }
+        .star-2 { top: 40%; left: 10px; animation-delay: 1s; }
+        .star-3 { bottom: 20px; right: 30px; animation-delay: 2s; }
+
+        /* Floating CTA */
+        .floating-cta {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 9500;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 2px solid var(--border);
+            border-radius: 20px;
+            padding: 1.2rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+            min-width: 200px;
+        }
+
+        .cta-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .stat-item.main-stat {
+            font-size: 1rem;
+        }
+
+        .stat-icon {
+            font-size: 1.1rem;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--pink);
+        }
+
+        .stat-text {
+            color: var(--text-light);
+        }
+
+        .main-stat .stat-text {
+            color: var(--text);
+        }
+
+        .floating-cta .cta-btn {
+            width: 100%;
             text-align: center;
+            padding: 0.8rem 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        /* Info Grid */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .info-card {
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .info-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .info-card p {
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* Process Grid */
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .process-card {
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .process-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .process-number {
+            position: absolute;
+            top: -1rem;
+            left: -1rem;
+            width: 3rem;
+            height: 3rem;
+            background: var(--pink);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Silkscreen', monospace;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .process-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .process-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .process-list {
+            list-style: none;
+            text-align: left;
+        }
+
+        .process-list li {
+            padding: 0.8rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: var(--text);
+        }
+
+        /* Comparison Section */
+        .comparison-section {
+            background: var(--bg);
+            padding: 4rem 5%;
+            margin: 6rem 0;
+        }
+
+        .vs-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .vs-divider {
+            font-family: 'Silkscreen', monospace;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--pink);
+            display: flex;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .vs-column {
+            padding: 2rem;
+        }
+
+        .vs-title {
+            font-family: 'Silkscreen', monospace;
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+        .vs-list {
+            list-style: none;
+        }
+
+        .vs-list li {
+            padding: 0.8rem 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            line-height: 1.6;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .vs-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            text-align: center;
+            padding: 4rem 5%;
+            background: var(--bg);
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .contact-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .contact-links a:hover {
+            color: var(--pink);
+            transform: scale(1.1);
         }
 
         /* Mobile */
         @media (max-width: 968px) {
-            nav {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .nav-left, .nav-center, .nav-right {
-                justify-self: center;
-            }
-
-            .nav-right {
-                margin-top: 1rem;
-            }
-
-            .collections-grid {
-                grid-template-columns: 1fr;
-                height: auto;
-            }
-
-            .collection-box {
-                height: 300px;
-            }
-
-            .form-with-images {
+            .cursor { display: none; }
+            body { cursor: auto; }
+            
+            .hero-section,
+            .collections-grid,
+            .outfits-grid,
+            .exploded-container,
+            .info-grid,
+            .process-grid {
                 grid-template-columns: 1fr;
             }
 
-            .exploded-item {
-                width: 120px;
-                height: 120px;
+            .nav-links {
+                display: none;
+            }
+
+            .logo-container {
+                position: static;
+                transform: none;
+            }
+
+            .vs-container {
+                grid-template-columns: 1fr;
+            }
+
+            .vs-divider {
+                padding: 1rem 0;
+                justify-content: center;
+            }
+
+            .floating-cta {
+                bottom: 1rem;
+                right: 1rem;
+                min-width: 170px;
                 padding: 1rem;
             }
 
-            .exploded-center {
-                width: 300px;
-                height: 400px;
+            .exploded-glass {
+                width: 95%;
+                height: 90vh;
+            }
+
+            .exploded-container {
+                padding: 2rem;
+            }
+
+            .nav-arrow {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Background -->
+    <div class="bg-shape"></div>
+    <div class="bg-shape"></div>
+    <div class="bg-shape"></div>
+
+    <!-- Cursor -->
+    <div class="cursor" id="cursor"></div>
+
     <!-- Header -->
-    <header class="fade-in">
-        <nav>
-            <div class="nav-left">
-                <a href="#collections" class="nav-link">Explore Styles</a>
+    <header>
+        <div class="header-content">
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#how">Your Role</a>
+                <a href="#contact">Contact</a>
             </div>
-            <div class="nav-center">
+            
+            <div class="logo-container">
                 <div class="logo">REWIND</div>
             </div>
-            <div class="nav-right">
-                <a href="#about" class="nav-link">About</a>
-                <a href="#join" class="nav-link">Join</a>
-                <a href="#contact" class="nav-link">Contact</a>
+
+            <div class="header-right">
+                <a href="mailto:rewind.thevoidcollective@gmail.com">Email</a>
+                <a href="https://instagram.com/rewindbyvc">Instagram</a>
             </div>
-        </nav>
+        </div>
     </header>
 
-    <!-- Hero with Rotating Collections -->
-    <section class="hero">
-        <div class="collections-grid">
-            <!-- Collection 1: Electric Patchwork -->
-            <div class="collection-box" data-collection="electric">
-                <div class="collection-image">
-                    <div class="collection-placeholder">
-                        <div class="collection-icon">⚡</div>
-                        <div class="collection-name">Electric Patchwork</div>
-                        <div class="collection-subtitle">Bold • Vibrant • Eclectic</div>
-                    </div>
+    <!-- Main -->
+    <main>
+        <!-- Hero -->
+        <section class="hero-section">
+            <div class="glass-box hero-glass" style="background: rgba(253,251,247,0.98); color: #0a0a0a; border: 2px solid rgba(0,0,0,0.1);">
+                <h1 class="glitch" style="line-height: 1.2; color: #0a0a0a; text-shadow: 2px 2px 0px #00B4D8, -2px -2px 0px #FF006E;">YOU DON'T FOLLOW TRENDS. YOU CREATE THEM.</h1>
+                <p class="hero-subtitle" style="color: rgba(10,10,10,0.7); font-size: 1.1rem;">Help us validate community-voted Y2K streetwear. Vote on designs. Shape what gets made. Proudly designed and manufactured in India.</p>
+            </div>
+
+            <!-- Carousel Collection -->
+            <div class="glass-box" id="collection-carousel">
+                <!-- Carousel content will be dynamically inserted -->
+            </div>
+        </section>
+
+        <!-- Fast Fashion VS Us (moved from below) -->
+        <section class="comparison-section" style="margin: 6rem 0;">
+            <h2 class="section-title">FAST FASHION VS US</h2>
+            <div class="vs-container">
+                <div class="glass-box vs-column">
+                    <h3 class="vs-title">❌ FAST FASHION</h3>
+                    <ul class="vs-list">
+                        <li><span class="cross">✗</span> 2,000+ designs per week</li>
+                        <li><span class="cross">✗</span> 85% becomes waste</li>
+                        <li><span class="cross">✗</span> Trend-chasing copycat</li>
+                        <li><span class="cross">✗</span> Overproduction model</li>
+                        <li><span class="cross">✗</span> Unsold stock burned</li>
+                        <li><span class="cross">✗</span> Global supply chains</li>
+                        <li><span class="cross">✗</span> Everyone looks the same</li>
+                        <li><span class="cross">✗</span> No say in designs</li>
+                    </ul>
+                </div>
+
+                <div class="vs-divider">VS</div>
+
+                <div class="glass-box vs-column">
+                    <h3 class="vs-title">✓ REWIND</h3>
+                    <ul class="vs-list">
+                        <li><span class="check">✓</span> Community-voted designs</li>
+                        <li><span class="check">✓</span> 0% inventory waste</li>
+                        <li><span class="check">✓</span> Unique originals</li>
+                        <li><span class="check">✓</span> Made-to-order only</li>
+                        <li><span class="check">✓</span> Zero overproduction</li>
+                        <li><span class="check">✓</span> 100% Made in India</li>
+                        <li><span class="check">✓</span> Stand out from crowd</li>
+                        <li><span class="check">✓</span> You decide what's made</li>
+                    </ul>
                 </div>
             </div>
+        </section>
 
-            <!-- Collection 2: Butterfly Metropolis -->
-            <div class="collection-box" data-collection="butterfly">
-                <div class="collection-image">
-                    <div class="collection-placeholder">
-                        <div class="collection-icon">🦋</div>
-                        <div class="collection-name">Butterfly Metropolis</div>
-                        <div class="collection-subtitle">Feminine • Transformative • Urban</div>
-                    </div>
+        <!-- What is REWIND -->
+        <section id="about" style="margin: 6rem 0;">
+            <h2 class="section-title">WHAT IS REWIND?</h2>
+            <div class="info-grid">
+                <div class="glass-box info-card">
+                    <div class="info-icon">🎨</div>
+                    <h3>Y2K Re-Imagined</h3>
+                    <p>We take iconic early 2000s streetwear aesthetics and evolve them for today. Bold silhouettes meet modern sustainability. It's not throwback fashion—it's the future.</p>
+                </div>
+
+                <div class="glass-box info-card">
+                    <div class="info-icon">🗳️</div>
+                    <h3>Community Co-Creates</h3>
+                    <p>You vote on every design. Your preferences determine what gets produced. No corporate guesswork. Real co-creation with Gen Z, for Gen Z.</p>
+                </div>
+
+                <div class="glass-box info-card">
+                    <div class="info-icon">🤖</div>
+                    <h3>AI Enables, Not Replaces</h3>
+                    <p>AI helps us design faster and smarter, but humans make every final decision. Technology empowers creativity—it doesn't replace it.</p>
                 </div>
             </div>
+        </section>
 
-            <!-- Collection 3: Sport/Club Fusion -->
-            <div class="collection-box" data-collection="sportclub">
-                <div class="collection-image">
-                    <div class="collection-placeholder">
-                        <div class="collection-icon">🏃</div>
-                        <div class="collection-name">Sport/Club Fusion</div>
-                        <div class="collection-subtitle">Athletic • Bold • Street</div>
-                    </div>
+        <!-- How We Work -->
+        <section id="how" style="margin: 6rem 0;">
+            <h2 class="section-title">YOUR ROLE</h2>
+            <div class="process-grid">
+                <div class="glass-box process-card">
+                    <div class="process-number">01</div>
+                    <div class="process-icon">🗳️</div>
+                    <h3>You Vote</h3>
+                    <ul class="process-list">
+                        <li><span class="check">✓</span> Browse 3 collections</li>
+                        <li><span class="check">✓</span> Vote for your favorites</li>
+                        <li><span class="check">✓</span> Top designs win</li>
+                        <li><span class="check">✓</span> Community decides everything</li>
+                    </ul>
+                </div>
+
+                <div class="glass-box process-card">
+                    <div class="process-number">02</div>
+                    <div class="process-icon">🏭</div>
+                    <h3>We Make</h3>
+                    <ul class="process-list">
+                        <li><span class="check">✓</span> Only winning designs produced</li>
+                        <li><span class="check">✓</span> Made-to-order only</li>
+                        <li><span class="check">✓</span> No overproduction</li>
+                        <li><span class="check">✓</span> Zero inventory waste</li>
+                    </ul>
+                </div>
+
+                <div class="glass-box process-card">
+                    <div class="process-number">03</div>
+                    <div class="process-icon">📦</div>
+                    <h3>You Get</h3>
+                    <ul class="process-list">
+                        <li><span class="check">✓</span> Unique piece you voted for</li>
+                        <li><span class="check">✓</span> 100% Made in India</li>
+                        <li><span class="check">✓</span> Zero waste guilt</li>
+                        <li><span class="check">✓</span> Community exclusive</li>
+                    </ul>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div class="hero-text">
-            <h1>Y2K streetwear, <span style="color: var(--pink);">re-imagined</span></h1>
-            <p>Vote on designs. We make only what you order. Zero waste. Made in India.</p>
-        </div>
+        <!-- Pricing Transparency -->
+        <section style="margin: 6rem 0;">
+            <div class="glass-box" style="max-width: 900px; margin: 0 auto; padding: 3rem; border: 3px solid var(--green);">
+                <h2 class="section-title" style="color: var(--green); font-size: 2rem; margin-bottom: 1.5rem;">NO PRICES YET. HERE'S WHY.</h2>
+                
+                <p style="font-size: 1.1rem; color: var(--text); margin-bottom: 2rem; line-height: 1.6;">
+                    We're testing if Gen Z actually wants community-voted fashion before we commit to production.
+                </p>
 
-        <!-- CTA - Prominent Position -->
-        <div class="cta-section">
-            <a href="#join" class="btn-movement">🔥 Join the Movement</a>
-            <div class="counter">
-                <strong>127 people</strong> have joined<br>
-                Need <strong>873 more</strong> by <strong>December 15, 2025</strong>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
+                    <div style="text-align: center;">
+                        <div style="font-size: 3rem; margin-bottom: 0.5rem;">📊</div>
+                        <h3 style="font-family: 'Silkscreen', monospace; font-size: 1rem; margin-bottom: 0.5rem;">Announce Pricing</h3>
+                        <p style="color: var(--text-light); font-size: 0.9rem;">Once we have 1000 committed community members</p>
+                    </div>
+                    
+                    <div style="text-align: center;">
+                        <div style="font-size: 3rem; margin-bottom: 0.5rem;">🗳️</div>
+                        <h3 style="font-family: 'Silkscreen', monospace; font-size: 1rem; margin-bottom: 0.5rem;">Launch First Vote</h3>
+                        <p style="color: var(--text-light); font-size: 0.9rem;">Community decides which designs get produced</p>
+                    </div>
+                    
+                    <div style="text-align: center;">
+                        <div style="font-size: 3rem; margin-bottom: 0.5rem;">👕</div>
+                        <h3 style="font-family: 'Silkscreen', monospace; font-size: 1rem; margin-bottom: 0.5rem;">Produce in India</h3>
+                        <p style="color: var(--text-light); font-size: 0.9rem;">Made-to-order, zero waste manufacturing</p>
+                    </div>
+                </div>
+
+                <div style="background: rgba(204,255,0,0.15); border: 2px solid var(--green); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem;">
+                    <p style="font-weight: 700; font-size: 1.1rem; color: var(--dark); margin-bottom: 0.5rem;">Transparency matters. We're building this WITH you.</p>
+                </div>
+
+                <div style="text-align: center;">
+                    <button onclick="openVoteForm('general', 'Community Member')" style="background: linear-gradient(135deg, var(--pink), var(--cyan)); color: white; padding: 1.2rem 3rem; border: none; border-radius: 50px; font-weight: 700; font-size: 1.1rem; cursor: pointer; transition: all 0.3s; font-family: 'Silkscreen', monospace;">
+                        BE ONE OF THE 1000 →
+                    </button>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- What is REWIND? -->
-    <section id="about">
-        <div class="section-header">
-            <div class="section-label">About REWIND</div>
-            <h2 class="section-title">What is REWIND?</h2>
-        </div>
-
-        <div class="info-grid">
-            <div class="info-card">
-                <div class="info-icon">🎨</div>
-                <h3>Y2K Re-Imagined</h3>
-                <p>We take iconic early 2000s streetwear aesthetics and evolve them for today. Bold silhouettes meet <span class="highlight">modern sustainability</span>. It's not throwback fashion—it's the future.</p>
+        <!-- Contact -->
+        <section id="contact" class="contact-section">
+            <h2 class="section-title">GET IN TOUCH</h2>
+            <div class="contact-links">
+                <a href="mailto:rewind.thevoidcollective@gmail.com">📧 rewind.thevoidcollective@gmail.com</a>
+                <a href="https://instagram.com/rewindbyvc" target="_blank">📷 @rewindbyvc</a>
             </div>
-
-            <div class="info-card">
-                <div class="info-icon">🗳️</div>
-                <h3>Community Co-Creates</h3>
-                <p>You vote on every design. Your preferences determine what gets produced. No corporate guesswork. <span class="highlight">Real co-creation</span> with Gen Z, for Gen Z.</p>
-            </div>
-
-            <div class="info-card">
-                <div class="info-icon">🇮🇳</div>
-                <h3>Made in India</h3>
-                <p>Every piece designed, manufactured, and shipped from India. We're building <span class="highlight">homegrown fashion</span> that competes globally while supporting local manufacturing.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- How We Work -->
-    <section>
-        <div class="section-header">
-            <div class="section-label">Process</div>
-            <h2 class="section-title">How We Work</h2>
-        </div>
-
-        <div class="info-grid">
-            <div class="info-card">
-                <div class="info-icon">01</div>
-                <h3>You Vote</h3>
-                <p>Browse collections. Vote on styles you love. Your preferences shape what we produce.</p>
-            </div>
-
-            <div class="info-card">
-                <div class="info-icon">02</div>
-                <h3>We Validate</h3>
-                <p>Once we hit <span class="highlight">1000 community members</span>, we launch. Pricing announced. First orders open.</p>
-            </div>
-
-            <div class="info-card">
-                <div class="info-icon">03</div>
-                <h3>Made-to-Order</h3>
-                <p><span class="highlight">Zero inventory.</span> We only make what you buy. No excess, no waste, no landfill fashion.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Why We Do This -->
-    <section style="background: var(--bg-card); padding: 4rem 5%; border-top: 1px solid rgba(255, 255, 255, 0.1); border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
-        <div class="section-header">
-            <div class="section-label">Mission</div>
-            <h2 class="section-title">Why We Do This</h2>
-        </div>
-
-        <div style="max-width: 800px; margin: 0 auto; text-align: center;">
-            <p style="font-size: 1.2rem; line-height: 1.9; color: var(--text-dim); margin-bottom: 2rem;">
-                Fast fashion produces <span class="highlight">2,000+ designs per week</span> and throws away 85% unsold. 
-                You get what's cheapest, not what you want. Brands decide, you settle.
+            <p style="margin-top: 2rem; color: var(--text-light); font-size: 0.9rem;">
+                © 2025 REWIND by The Void Collective • Homegrown in India 🇮🇳
             </p>
-            <p style="font-size: 1.2rem; line-height: 1.9; color: var(--text-dim);">
-                REWIND flips this. <span class="highlight">Community decides every design.</span> We make only what sells. 
-                Maximum intention, zero waste. Y2K aesthetics evolved with modern values.
-            </p>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <!-- Collection Voting -->
-    <section id="collections" class="voting-section">
-        <div class="section-header">
-            <div class="section-label">Vote Now</div>
-            <h2 class="section-title">Choose Your Collections</h2>
-            <p style="color: var(--text-dim); max-width: 700px; margin: 0 auto;">
-                Vote on 1 or more collections. Click to explore 4 outfits in each collection.
-            </p>
-        </div>
-
-        <div class="voting-grid">
-            <!-- Electric Patchwork -->
-            <div class="voting-card" data-collection="electric" onclick="openExplorer('electric')">
-                <div class="voting-image">
-                    <div class="collection-placeholder">
-                        <div class="collection-icon">⚡</div>
-                    </div>
-                </div>
-                <div class="voting-info">
-                    <h3>Electric Patchwork</h3>
-                    <p>Bold color blocks, mixed textures, deconstructed silhouettes. Maximum visual impact.</p>
-                    <label class="vote-checkbox" onclick="event.stopPropagation()">
-                        <input type="checkbox" name="collection" value="electric">
-                        <span>Vote for this collection</span>
-                    </label>
-                </div>
-            </div>
-
-            <!-- Butterfly Metropolis -->
-            <div class="voting-card" data-collection="butterfly" onclick="openExplorer('butterfly')">
-                <div class="voting-image">
-                    <div class="collection-placeholder">
-                        <div class="collection-icon">🦋</div>
-                    </div>
-                </div>
-                <div class="voting-info">
-                    <h3>Butterfly Metropolis</h3>
-                    <p>Delicate prints, transformative energy, Y2K femininity reimagined. Urban meets ethereal.</p>
-                    <label class="vote-checkbox" onclick="event.stopPropagation()">
-                        <input type="checkbox" name="collection" value="butterfly">
-                        <span>Vote for this collection</span>
-                    </label>
-                </div>
-            </div>
-
-            <!-- Sport/Club Fusion -->
-            <div class="voting-card" data-collection="sportclub" onclick="openExplorer('sportclub')">
-                <div class="voting-image">
-                    <div class="collection-placeholder">
-                        <div class="collection-icon">🏃</div>
-                    </div>
-                </div>
-                <div class="voting-info">
-                    <h3>Sport/Club Fusion</h3>
-                    <p>Athletic wear meets club energy. Technical fabrics with Y2K edge. Function + fashion.</p>
-                    <label class="vote-checkbox" onclick="event.stopPropagation()">
-                        <input type="checkbox" name="collection" value="sportclub">
-                        <span>Vote for this collection</span>
-                    </label>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Outfit Explorer Modal -->
-    <div class="outfit-explorer" id="outfit-explorer">
-        <div class="explorer-header">
-            <h2 id="explorer-title">Collection Outfits</h2>
-            <button class="close-explorer" onclick="closeExplorer()">✕ Close</button>
-        </div>
-        <div class="outfits-grid" id="outfits-container">
-            <!-- Outfits will be inserted here dynamically -->
+    <!-- Modal -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal()">×</button>
+            <h2 class="modal-title" id="modal-title"></h2>
+            <div class="outfits-grid" id="outfits-grid"></div>
         </div>
     </div>
 
-    <!-- Exploded View Modal -->
-    <div class="exploded-view" id="exploded-view">
-        <button class="close-exploded" onclick="closeExploded()">✕ Close</button>
-        <div class="exploded-container" id="exploded-container">
-            <!-- Exploded view items will be inserted here -->
+    <!-- Exploded View with Navigation -->
+    <div class="exploded" id="exploded">
+        <div class="exploded-glass">
+            <button class="close-btn" onclick="closeExploded()">×</button>
+            <div class="nav-arrows">
+                <button class="nav-arrow" onclick="navigateOutfit(-1)">‹</button>
+                <button class="nav-arrow" onclick="navigateOutfit(1)">›</button>
+            </div>
+            <div class="exploded-container" id="exploded-container"></div>
         </div>
     </div>
 
-    <!-- Join Form -->
-    <section id="join">
-        <div class="section-header">
-            <div class="section-label">Join the Movement</div>
-            <h2 class="section-title">Be One of the First 1000</h2>
-        </div>
+    <!-- Vote Form Modal -->
+    <div class="vote-form-modal" id="vote-form">
+        <div class="vote-form">
+            <span class="y2k-star star-1">✨</span>
+            <span class="y2k-star star-2">⭐</span>
+            <span class="y2k-star star-3">✨</span>
+            
+            <button class="close-btn" onclick="closeVoteForm()">×</button>
+            <h2 class="form-title">CAST YOUR VOTE</h2>
+            <p class="form-subtitle">Help us decide what gets made!</p>
+            
+            <form id="user-vote-form" onsubmit="submitVote(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Name *</label>
+                        <input type="text" id="name" required placeholder="Your name" minlength="2" maxlength="50">
+                    </div>
 
-        <div class="form-section">
-            <div class="form-with-images">
-                <div class="form-images">
-                    <div class="form-image">
-                        <div style="text-align: center;">
-                            <div style="font-size: 4rem;">⚡</div>
-                            <div style="font-size: 1.2rem; font-weight: 600;">Electric Patchwork</div>
+                    <div class="form-group">
+                        <label>Email *</label>
+                        <input type="email" id="email" required placeholder="your@email.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                    </div>
+
+                    <div class="form-group">
+                        <label>City *</label>
+                        <input type="text" id="city" required placeholder="Your city" minlength="2" maxlength="50">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group two-third">
+                        <label>Phone</label>
+                        <div class="phone-group">
+                            <select id="country-code">
+                                <option value="+91">🇮🇳 +91</option>
+                                <option value="+1">🇺🇸 +1</option>
+                                <option value="+44">🇬🇧 +44</option>
+                                <option value="+61">🇦🇺 +61</option>
+                                <option value="+971">🇦🇪 +971</option>
+                                <option value="+65">🇸🇬 +65</option>
+                                <option value="+81">🇯🇵 +81</option>
+                                <option value="+82">🇰🇷 +82</option>
+                                <option value="+86">🇨🇳 +86</option>
+                                <option value="+33">🇫🇷 +33</option>
+                                <option value="+49">🇩🇪 +49</option>
+                            </select>
+                            <input type="tel" id="phone" placeholder="12345 67890" pattern="[0-9]{5,15}">
                         </div>
                     </div>
-                    <div class="form-image">
-                        <div style="text-align: center;">
-                            <div style="font-size: 4rem;">🦋</div>
-                            <div style="font-size: 1.2rem; font-weight: 600;">Butterfly Metropolis</div>
+
+                    <div class="form-group">
+                        <label>Age *</label>
+                        <input type="number" id="age" required placeholder="Your age" min="13" max="120">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Gender *</label>
+                        <select id="gender" required>
+                            <option value="">Select...</option>
+                            <option value="female">Female</option>
+                            <option value="male">Male</option>
+                            <option value="non-binary">Non-binary</option>
+                            <option value="prefer-not-to-say">Prefer not to say</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group full-width">
+                    <label>What collections did you like? *</label>
+                    <div class="collection-checkboxes">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="collection" value="hologram" onchange="toggleOutfits('hologram')">
+                            <span>🦋 Hologram Glam</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="collection" value="patchwork" onchange="toggleOutfits('patchwork')">
+                            <span>🎨 Patchwork Street</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="collection" value="utility" onchange="toggleOutfits('utility')">
+                            <span>🚀 Utility Future</span>
+                        </label>
+                    </div>
+
+                    <!-- Hologram Outfits -->
+                    <div class="outfit-section" id="outfits-hologram">
+                        <label style="font-weight: 700; margin-bottom: 0.5rem; display: block;">🦋 Which Hologram Glam outfits?</label>
+                        <div class="outfit-checkboxes">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="outfit" value="hologram-1">
+                                <span>Butterfly Dreamscape</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="outfit" value="hologram-2">
+                                <span>Iridescent Statement</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="outfit" value="hologram-3">
+                                <span>Galaxy Club</span>
+                            </label>
                         </div>
                     </div>
-                    <div class="form-image">
-                        <div style="text-align: center;">
-                            <div style="font-size: 4rem;">🏃</div>
-                            <div style="font-size: 1.2rem; font-weight: 600;">Sport/Club Fusion</div>
+
+                    <!-- Patchwork Outfits -->
+                    <div class="outfit-section" id="outfits-patchwork">
+                        <label style="font-weight: 700; margin-bottom: 0.5rem; display: block;">🎨 Which Patchwork Street outfits?</label>
+                        <div class="outfit-checkboxes">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="outfit" value="patchwork-1">
+                                <span>Urban Cozy Maximal</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="outfit" value="patchwork-2">
+                                <span>Street Tough Upcycle</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="outfit" value="patchwork-3">
+                                <span>Warm Utilitarian</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Utility Outfits -->
+                    <div class="outfit-section" id="outfits-utility">
+                        <label style="font-weight: 700; margin-bottom: 0.5rem; display: block;">🚀 Which Utility Future outfits?</label>
+                        <div class="outfit-checkboxes">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="outfit" value="utility-1">
+                                <span>Club Functional</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="outfit" value="utility-2">
+                                <span>Sport-Tech Unisex</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="outfit" value="utility-3">
+                                <span>Futuristic Active</span>
+                            </label>
                         </div>
                     </div>
                 </div>
 
-                <div class="form-container">
-                    <div class="benefits-box">
-                        <h4>✨ Early Member Benefits</h4>
-                        <ul>
-                            <li>Special pricing post-validation (up to 20% off)</li>
-                            <li>First access to launch drops</li>
-                            <li>Exclusive voting power on future collections</li>
-                            <li>Priority pre-orders & limited editions</li>
-                        </ul>
-                    </div>
-
-                    <form id="join-form" action="https://docs.google.com/forms/d/e/YOUR_FORM_ID/formResponse" method="POST" target="hidden_iframe">
-                        <div class="form-group">
-                            <label class="form-label">Email *</label>
-                            <input type="email" name="entry.EMAIL" class="form-input" placeholder="your@email.com" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">Name *</label>
-                            <input type="text" name="entry.NAME" class="form-input" placeholder="Your name" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">City *</label>
-                            <select name="entry.CITY" class="form-select" required>
-                                <option value="">Select city</option>
-                                <option>Delhi</option>
-                                <option>Mumbai</option>
-                                <option>Bangalore</option>
-                                <option>Pune</option>
-                                <option>Hyderabad</option>
-                                <option>Chennai</option>
-                                <option>Kolkata</option>
-                                <option>Jaipur</option>
-                                <option>Ahmedabad</option>
-                                <option>Other</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">Which collection(s) interest you most? *</label>
-                            <div class="outfit-selection">
-                                <label class="outfit-option">
-                                    <input type="checkbox" name="entry.COLLECTION" value="Electric Patchwork">
-                                    <span>⚡ Electric Patchwork</span>
-                                </label>
-                                <label class="outfit-option">
-                                    <input type="checkbox" name="entry.COLLECTION" value="Butterfly Metropolis">
-                                    <span>🦋 Butterfly Metropolis</span>
-                                </label>
-                                <label class="outfit-option">
-                                    <input type="checkbox" name="entry.COLLECTION" value="Sport/Club Fusion">
-                                    <span>🏃 Sport/Club Fusion</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">If you chose Electric Patchwork, which outfit did you like?</label>
-                            <select name="entry.ELECTRIC_OUTFIT" class="form-select">
-                                <option value="">Select outfit (optional)</option>
-                                <option>Neon Fusion</option>
-                                <option>Graffiti Energy</option>
-                                <option>Varsity Bounce</option>
-                                <option>Panel Pop</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">If you chose Butterfly Metropolis, which outfit did you like?</label>
-                            <select name="entry.BUTTERFLY_OUTFIT" class="form-select">
-                                <option value="">Select outfit (optional)</option>
-                                <option>Butterfly Dreamscape</option>
-                                <option>Holo Flight</option>
-                                <option>Afterparty Wings</option>
-                                <option>Urban Moth</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">If you chose Sport/Club Fusion, which outfit did you like?</label>
-                            <select name="entry.SPORTCLUB_OUTFIT" class="form-select">
-                                <option value="">Select outfit (optional)</option>
-                                <option>Pullover Pulse</option>
-                                <option>Parachute Rave</option>
-                                <option>Layer Jam</option>
-                                <option>Stadium Streetwalker</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">Your thoughts, feedback, or suggestions</label>
-                            <textarea name="entry.FEEDBACK" class="form-textarea" placeholder="Share your ideas, style preferences, what you'd like to see, or any feedback..."></textarea>
-                        </div>
-
-                        <button type="submit" class="submit-btn">Join the Movement 🚀</button>
-
-                        <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-dim); text-align: center;">
-                            By joining, you'll get email updates about voting, pricing, and launch. Unsubscribe anytime.
-                        </p>
-                    </form>
+                <div class="form-group full-width" style="margin-top: 1.5rem; padding: 1rem; background: rgba(204,255,0,0.1); border: 2px solid var(--green); border-radius: 12px;">
+                    <label class="checkbox-label" style="font-size: 0.95rem; cursor: pointer; display: flex; align-items: flex-start; gap: 0.5rem;">
+                        <input type="checkbox" id="subscribe-only" onchange="handleSubscribeOnly()" style="margin-top: 0.2rem; flex-shrink: 0; width: 18px; height: 18px; cursor: pointer;">
+                        <span style="line-height: 1.5;">
+                            <strong>Just here to stay updated?</strong><br>
+                            <span style="color: var(--text-light); font-size: 0.9rem;">Skip voting and subscribe to be notified when we launch final collections and pricing</span>
+                        </span>
+                    </label>
                 </div>
+
+                <div class="form-group full-width">
+                    <label>Additional feedback (Optional)</label>
+                    <textarea id="feedback" placeholder="Tell us what caught your eye..." maxlength="500"></textarea>
+                </div>
+
+                <div class="privacy-note">
+                    🔒 Your info is secure and only for voting records. We respect your privacy.
+                </div>
+
+                <button type="submit" class="submit-btn">✨ SUBMIT VOTE ✨</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Floating CTA -->
+    <div class="floating-cta">
+        <div class="cta-stats">
+            <div class="stat-item">
+                <span class="stat-icon">⏰</span>
+                <span class="stat-text">Dec 15, 2025</span>
+            </div>
+            <div class="stat-item main-stat">
+                <span class="stat-icon">👥</span>
+                <span class="stat-number">145</span>
+                <span class="stat-text">/ 1000</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-icon">⚡</span>
+                <span class="stat-text">873 more!</span>
             </div>
         </div>
-    </section>
+        <a href="#" onclick="document.querySelector('.collections-grid').scrollIntoView({behavior: 'smooth'}); return false;" class="cta-btn cta-vote">🗳️ VOTE NOW</a>
+    </div>
 
-    <!-- Footer -->
-    <footer id="contact">
-        <div style="max-width: 800px; margin: 0 auto;">
-            <div style="font-family: 'Silkscreen', monospace; font-size: 2rem; margin-bottom: 1rem;" class="logo">REWIND</div>
-            <p style="color: var(--text-dim); margin-bottom: 2rem;">
-                Y2K streetwear re-imagined. Community-voted. Made-to-order. Made in India.
-            </p>
-            <div style="display: flex; gap: 2rem; justify-content: center; margin-bottom: 2rem; flex-wrap: wrap;">
-                <a href="mailto:hello@thevoidcollective.shop" class="nav-link">Email</a>
-                <a href="#" class="nav-link">Instagram</a>
-                <a href="#" class="nav-link">Twitter</a>
-            </div>
-            <p style="color: var(--text-dim); font-size: 0.9rem;">
-                © 2025 REWIND by The Void Collective. Made in India 🇮🇳
-            </p>
-        </div>
-    </footer>
-
-    <!-- Hidden iframe for form submission -->
-    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
-
-    <script>
-        // Outfit data
-        const outfitData = {
-            electric: [
-                {
-                    name: "Neon Fusion",
-                    icon: "👕",
-                    components: {
-                        top: { name: "Patchwork Crop Tee", material: "Cotton Blend", fit: "Oversized fit" },
-                        bottom: { name: "Multi-Panel Cargo Pants", material: "Technical Twill", fit: "Baggy fit" },
-                        shoes: { name: "Platform Sneakers", detail: "Chunky sole" },
-                        accessories: ["Chain Belt", "Crossbody Bag", "Colorblock Socks"]
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Outfit Data
+        const data = {
+            hologram: {
+                title: "HOLOGRAM/BUTTERFLY GLAM",
+                outfits: [
+                    {
+                        name: "Butterfly Dreamscape",
+                        image: "outfit-images/Hologram_Glam__1_.jpg",
+                        desc: "Cropped butterfly appliqué jacket with holographic flared pants",
+                        votes: 45,
+                        components: [
+                            { icon: "👚", text: "Cropped butterfly appliqué jacket • Organic cotton/upcycled denim" },
+                            { icon: "👖", text: "Holographic metallic flared pants • Recycled polyester" },
+                            { icon: "👢", text: "Silver platform boots • Vegan, metallic upper" },
+                            { icon: "💼", text: "Iridescent box bag • Butterfly choker" }
+                        ],
+                        sustainability: ["Upcycled denim", "Organic cotton", "Recycled polyester", "Vegan footwear", "Low-impact dyes"]
+                    },
+                    {
+                        name: "Iridescent Statement",
+                        image: "outfit-images/Hologram_Glam__3_.jpg",
+                        desc: "Iridescent cropped denim with metallic wide-leg pants",
+                        votes: 38,
+                        components: [
+                            { icon: "👚", text: "Iridescent cropped denim • Recycled denim" },
+                            { icon: "👖", text: "Metallic wide-leg pants • Eco-poly shine" },
+                            { icon: "👢", text: "Rainbow metallic boots • Vegan" },
+                            { icon: "💼", text: "Crystal mesh bralette • Metallic clutch" }
+                        ],
+                        sustainability: ["Recycled denim", "Eco-poly metallics", "Artisan embroidery", "Minimal water", "Re-used trims"]
+                    },
+                    {
+                        name: "Galaxy Club",
+                        image: "outfit-images/Hologram_Glam__4_.jpg",
+                        desc: "Textured blue bolero with holographic shorts",
+                        votes: 52,
+                        components: [
+                            { icon: "👚", text: "Textured bolero • Organic mesh" },
+                            { icon: "👖", text: "Holographic shorts • Recycled metallic" },
+                            { icon: "👢", text: "Hologram platforms • Statement soles" },
+                            { icon: "💼", text: "Chain belt • Butterfly bag" }
+                        ],
+                        sustainability: ["Organic mesh", "Recycled metallics", "Upcycled embellishments", "Local trims", "On-demand"]
                     }
-                },
-                {
-                    name: "Graffiti Energy",
-                    icon: "🎨",
-                    components: {
-                        top: { name: "Graffiti Print Hoodie", material: "Organic Cotton", fit: "Relaxed fit" },
-                        bottom: { name: "Patchwork Denim Jeans", material: "Recycled Denim", fit: "Straight leg" },
-                        shoes: { name: "High-Top Trainers", detail: "Contrast details" },
-                        accessories: ["Neon Mesh Sleeves", "Logo Beanie"]
+                ]
+            },
+            patchwork: {
+                title: "PATCHWORK COLORBLOCK STREET",
+                outfits: [
+                    {
+                        name: "Urban Cozy Maximal",
+                        image: "outfit-images/Patchwork_Colorblock__6_.jpg",
+                        desc: "Oversized patchwork knit with cargo joggers",
+                        votes: 67,
+                        components: [
+                            { icon: "👚", text: "Patchwork knit jacket • Upcycled yarn" },
+                            { icon: "👖", text: "Cargo joggers • Recycled twill • XL pockets" },
+                            { icon: "👟", text: "Platform sneakers • Upcycled materials" },
+                            { icon: "💼", text: "Cargo bag • Chains • Bucket hat" }
+                        ],
+                        sustainability: ["100% upcycled yarn", "Scrap-based", "Surplus linings", "Local trims", "Minimal waste"]
+                    },
+                    {
+                        name: "Street Tough Upcycle",
+                        image: "outfit-images/Patchwork_Colorblock__4_.jpg",
+                        desc: "Cropped patchwork bomber with denim cargos",
+                        votes: 59,
+                        components: [
+                            { icon: "👚", text: "Patchwork bomber • Recycled corduroy" },
+                            { icon: "👖", text: "Denim cargo joggers • Reused panels" },
+                            { icon: "👟", text: "Platform boots • Vegan, recycled rubber" },
+                            { icon: "💼", text: "Utility pouch • Hat • Chain" }
+                        ],
+                        sustainability: ["Deadstock fabrics", "Patchwork assembly", "Vegan footwear", "Recycled soles", "Easy repair"]
+                    },
+                    {
+                        name: "Warm Utilitarian",
+                        image: "outfit-images/Patchwork_Colorblock__8_.jpg",
+                        desc: "Oversized colorblock bomber with baggy jeans",
+                        votes: 71,
+                        components: [
+                            { icon: "👚", text: "Colorblock bomber • Organic fleece" },
+                            { icon: "👖", text: "Baggy cargo jeans • Upcycled denim" },
+                            { icon: "👟", text: "Platform sneakers • Recycled mesh" },
+                            { icon: "💼", text: "Canvas bag • Patchwork hat" }
+                        ],
+                        sustainability: ["Zero textile waste", "Organic fleece", "Modular pockets", "Natural fabrics", "Local production"]
                     }
-                },
-                {
-                    name: "Varsity Bounce",
-                    icon: "🏀",
-                    components: {
-                        top: { name: "Colorblock Varsity Bomber", material: "Recycled Poly", fit: "Loose fit" },
-                        bottom: { name: "Logo Patch Shorts", material: "Organic Twill", fit: "Wide leg" },
-                        shoes: { name: "Canvas Skate Shoes", detail: "Padded tongue" },
-                        accessories: ["Striped Crew Socks", "Mirrored Sunglasses"]
+                ]
+            },
+            utility: {
+                title: "UTILITY TECH FUTURE",
+                outfits: [
+                    {
+                        name: "Club Functional",
+                        image: "outfit-images/Utility_Future__1_.jpg",
+                        desc: "Mesh bomber with olive cargo parachute pants",
+                        votes: 44,
+                        components: [
+                            { icon: "👚", text: "Mesh bomber • Recycled mesh" },
+                            { icon: "👖", text: "Cargo pants • Recycled ripstop • XL pockets" },
+                            { icon: "👟", text: "Chunky trainers • Recycled knit" },
+                            { icon: "💼", text: "Athletic socks • Tote" }
+                        ],
+                        sustainability: ["100% recycled mesh", "Organic cotton", "Recycled ripstop", "Modular hardware", "Local stitching"]
+                    },
+                    {
+                        name: "Sport-Tech Unisex",
+                        image: "outfit-images/Utility_Future__3_.jpg",
+                        desc: "Cropped mesh bomber with neon-strap cargos",
+                        votes: 56,
+                        components: [
+                            { icon: "👚", text: "Cropped bomber • Deadstock mesh" },
+                            { icon: "👖", text: "Parachute cargos • Recycled poly/cotton" },
+                            { icon: "👟", text: "Fluoro sneakers • Recycled foam" },
+                            { icon: "💼", text: "Sport tote • Wristband" }
+                        ],
+                        sustainability: ["Deadstock mesh", "Upcycled fabrics", "Minimal waste", "High utility", "Gender-neutral"]
+                    },
+                    {
+                        name: "Futuristic Active",
+                        image: "outfit-images/Utility_Future__7_.jpg",
+                        desc: "Mesh varsity bomber with stacked cargo joggers",
+                        votes: 61,
+                        components: [
+                            { icon: "👚", text: "Varsity bomber • Recycled mesh" },
+                            { icon: "👖", text: "Cargo joggers • Upcycled canvas" },
+                            { icon: "👟", text: "Platform trainers • Recycled components" },
+                            { icon: "💼", text: "XL tote • Key fob" }
+                        ],
+                        sustainability: ["Remnant fabrics", "Local sewing", "Simple trims", "Modular pockets", "Maximum function"]
                     }
-                },
-                {
-                    name: "Panel Pop",
-                    icon: "🔲",
-                    components: {
-                        top: { name: "Block Panel Zip Jacket", material: "Hemp/Cotton", fit: "Oversized" },
-                        bottom: { name: "Cord Trousers", material: "Bold Contrasts", fit: "Baggy fit" },
-                        shoes: { name: "Platform Sandals", detail: "Two-tone straps" },
-                        accessories: ["Minimalist Sling Bag", "Layered Beads"]
-                    }
-                }
-            ],
-            butterfly: [
-                {
-                    name: "Butterfly Dreamscape",
-                    icon: "🦋",
-                    components: {
-                        top: { name: "Cropped Butterfly Denim Jacket", material: "Organic Denim", fit: "Shrunken fit" },
-                        bottom: { name: "Metallic Flared Trousers", material: "Upcycled Poly", fit: "Slim fit" },
-                        shoes: { name: "Platform Boots", detail: "Holographic finish" },
-                        accessories: ["Butterfly Mesh Turtleneck", "Chunky Chain Necklace"]
-                    }
-                },
-                {
-                    name: "Holo Flight",
-                    icon: "✨",
-                    components: {
-                        top: { name: "Holographic Windbreaker", material: "Recycled Nylon", fit: "Boxy fit" },
-                        bottom: { name: "Straight Cargo Trousers", material: "Pastel Panels", fit: "Roomy pockets" },
-                        shoes: { name: "Colorblock Sneakers", detail: "Puffed construction" },
-                        accessories: ["Soft Ribbed Tee", "City Satchel"]
-                    }
-                },
-                {
-                    name: "Afterparty Wings",
-                    icon: "🌙",
-                    components: {
-                        top: { name: "Mesh Butterfly Top", material: "Subtle Sheen", fit: "Relaxed fit" },
-                        bottom: { name: "Low-Rise Patchwork Jeans", material: "Graphic Stitch", fit: "Wide leg" },
-                        shoes: { name: "Platform Sandals", detail: "Wide strap" },
-                        accessories: ["Metallic Bucket Hat", "Butterfly Chainbelt"]
-                    }
-                },
-                {
-                    name: "Urban Moth",
-                    icon: "🌃",
-                    components: {
-                        top: { name: "Metallic Bomber", material: "Lightweight", fit: "Dropped shoulder" },
-                        bottom: { name: "Cargo Mini Skirt", material: "Over Mesh Leggings", fit: "Layered" },
-                        shoes: { name: "Platform Loafers", detail: "Deep sole" },
-                        accessories: ["Iridescent Mini Backpack", "Graphic Long Sleeve Layer"]
-                    }
-                }
-            ],
-            sportclub: [
-                {
-                    name: "Pullover Pulse",
-                    icon: "👔",
-                    components: {
-                        top: { name: "Colorblock Tech Pullover", material: "Organic Jersey", fit: "Slightly boxy" },
-                        bottom: { name: "Oversized Track Shorts", material: "Contrast Tape", fit: "Roomy" },
-                        shoes: { name: "High-Top Sneakers", detail: "Athletic sole" },
-                        accessories: ["Mesh Tee Layer", "Sweatbands"]
-                    }
-                },
-                {
-                    name: "Parachute Rave",
-                    icon: "🪂",
-                    components: {
-                        top: { name: "Retro Athletic Hoodie", material: "French Terry", fit: "Loose fit" },
-                        bottom: { name: "Baggy Parachute Pants", material: "Drawcord ankles", fit: "Ultra baggy" },
-                        shoes: { name: "Chunky Skate Shoes", detail: "Grip soles" },
-                        accessories: ["Sports Tank Underlayer", "Mesh Bucket Hat"]
-                    }
-                },
-                {
-                    name: "Layer Jam",
-                    icon: "🎵",
-                    components: {
-                        top: { name: "Mesh Zip Jacket", material: "Powernet", fit: "Relaxed fit" },
-                        bottom: { name: "Paneled Track Pants", material: "Smooth Tech Knit", fit: "Athletic" },
-                        shoes: { name: "Platform Slides", detail: "Ribbed Straps & Socks" },
-                        accessories: ["Bright Logo Tote", "Layered Necklaces"]
-                    }
-                },
-                {
-                    name: "Stadium Streetwalker",
-                    icon: "🏟️",
-                    components: {
-                        top: { name: "Graphic Tape Windbreaker", material: "Technical Shell", fit: "Oversized" },
-                        bottom: { name: "Running Shorts", material: "Over Mesh Leggings", fit: "Snap side" },
-                        shoes: { name: "Bold Trainers", detail: "Colorblock details" },
-                        accessories: ["Fanny Pack", "Colored Lens Sunglasses"]
-                    }
-                }
-            ]
+                ]
+            }
         };
 
-        // Open outfit explorer
-        function openExplorer(collection) {
-            const explorer = document.getElementById('outfit-explorer');
-            const title = document.getElementById('explorer-title');
-            const container = document.getElementById('outfits-container');
+        // Current state
+        let currentCollection = '';
+        let currentOutfitIndex = 0;
+        let voteTarget = { type: '', name: '' };
+
+        // Cursor
+        const cursor = document.getElementById('cursor');
+        if (cursor) {
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+            });
+
+            document.addEventListener('mouseover', (e) => {
+                if (e.target.closest('a, button, .collection-card, .outfit-card')) {
+                    cursor.classList.add('hover');
+                } else {
+                    cursor.classList.remove('hover');
+                }
+            });
+        }
+
+        // Open Collection
+        function openCollection(key) {
+            currentCollection = key;
+            const modal = document.getElementById('modal');
+            const title = document.getElementById('modal-title');
+            const grid = document.getElementById('outfits-grid');
             
-            const titles = {
-                electric: 'Electric Patchwork Collection',
-                butterfly: 'Butterfly Metropolis Collection',
-                sportclub: 'Sport/Club Fusion Collection'
-            };
-            title.textContent = titles[collection];
+            const collection = data[key];
+            title.textContent = "Rewind's Collection Directions";
             
-            const outfits = outfitData[collection];
-            container.innerHTML = outfits.map((outfit, index) => `
-                <div class="outfit-card" onclick="openExploded('${collection}', ${index})">
-                    <div class="outfit-image">${outfit.icon}</div>
-                    <div class="outfit-details">
+            grid.innerHTML = collection.outfits.map((outfit, i) => `
+                <div class="outfit-card" onclick="openExploded('${key}', ${i})">
+                    <img src="${outfit.image}" class="outfit-image" onerror="this.src='https://via.placeholder.com/400x500/FF006E/FFFFFF?text=${outfit.name.replace(/ /g, '+')}'">
+                    <div class="outfit-info">
                         <div class="outfit-name">${outfit.name}</div>
-                        <div class="outfit-component">Top: ${outfit.components.top.name}</div>
-                        <div class="outfit-component">Bottom: ${outfit.components.bottom.name}</div>
-                        <div class="outfit-component">Shoes: ${outfit.components.shoes.name}</div>
-                    </div>
-                    <div class="outfit-specs">
-                        <div class="spec-item">
-                            <div class="spec-label">TOP</div>
-                            <div class="spec-value">${outfit.components.top.name}<br>${outfit.components.top.material} • ${outfit.components.top.fit}</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-label">BOTTOM</div>
-                            <div class="spec-value">${outfit.components.bottom.name}<br>${outfit.components.bottom.material} • ${outfit.components.bottom.fit}</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-label">SHOES</div>
-                            <div class="spec-value">${outfit.components.shoes.name}<br>${outfit.components.shoes.detail}</div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-label">ACCESSORIES</div>
-                            <div class="spec-value">${outfit.components.accessories.join(', ')}</div>
-                        </div>
+                        <div class="outfit-desc">${outfit.desc}</div>
+                        <div class="votes">🗳️ ${outfit.votes} votes</div>
                     </div>
                 </div>
             `).join('');
             
-            explorer.classList.add('active');
+            modal.classList.add('active');
         }
 
-        function closeExplorer() {
-            document.getElementById('outfit-explorer').classList.remove('active');
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
         }
 
-        function openExploded(collection, index) {
-            const exploded = document.getElementById('exploded-view');
+        // Open Exploded with Navigation
+        function openExploded(key, i) {
+            currentCollection = key;
+            currentOutfitIndex = i;
+            showExplodedOutfit();
+            document.getElementById('exploded').classList.add('active');
+            closeModal();
+        }
+
+        function showExplodedOutfit() {
             const container = document.getElementById('exploded-container');
-            const outfit = outfitData[collection][index];
+            const outfit = data[currentCollection].outfits[currentOutfitIndex];
+            const collectionNames = {
+                hologram: 'HOLOGRAM GLAM',
+                patchwork: 'PATCHWORK STREET',
+                utility: 'UTILITY FUTURE'
+            };
             
             container.innerHTML = `
-                <div class="exploded-center">
-                    <div style="font-size: 7rem;">${outfit.icon}</div>
-                    <div class="exploded-outfit-name">${outfit.name}</div>
+                <div class="exploded-left">
+                    <div class="collection-badge-small">${collectionNames[currentCollection]}</div>
+                    
+                    <div class="exploded-header">
+                        <div class="exploded-title-group">
+                            <h2 class="exploded-title">${outfit.name}</h2>
+                            <p class="exploded-subtitle">${outfit.desc}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h3 class="detail-header">COMPONENTS</h3>
+                        <ul class="detail-list">
+                            ${outfit.components.map(c => `<li><span>${c.icon}</span> ${c.text}</li>`).join('')}
+                        </ul>
+                    </div>
                 </div>
-                <div class="exploded-item">
-                    <div class="item-icon">👚</div>
-                    <div class="item-label">${outfit.components.top.name}</div>
-                    <div class="item-detail">${outfit.components.top.material}</div>
+                
+                <div class="exploded-right">
+                    <img src="${outfit.image}" class="exploded-image" onerror="this.src='https://via.placeholder.com/600x800/FF006E/FFFFFF?text=${outfit.name.replace(/ /g, '+')}'" style="margin-bottom: 1rem;">
+                    
+                    <div class="vote-buttons-row">
+                        <div class="vote-badge">🗳️ ${outfit.votes} PEOPLE VOTED</div>
+                        <button class="vote-btn-exploded" onclick="openVoteForm('outfit', '${outfit.name}')">🗳️ VOTE FOR THIS</button>
+                    </div>
                 </div>
-                <div class="exploded-item">
-                    <div class="item-icon">👖</div>
-                    <div class="item-label">${outfit.components.bottom.name}</div>
-                    <div class="item-detail">${outfit.components.bottom.material}</div>
+
+                <h3 style="font-family: 'Silkscreen', monospace; font-size: 0.95rem; color: var(--dark); margin-top: 0.8rem; margin-bottom: 0.3rem;">🌍 HOW DOES THIS HELP THE ENVIRONMENT?</h3>
+                <div class="sustainability-box-full" style="margin-top: 0;">
+                    <ul class="sustainability-list">
+                        ${outfit.sustainability.map(s => `<li><span style="color: var(--green); font-size: 0.9rem;">✓</span> ${s}</li>`).join('')}
+                    </ul>
                 </div>
-                <div class="exploded-item">
-                    <div class="item-icon">👟</div>
-                    <div class="item-label">${outfit.components.shoes.name}</div>
-                    <div class="item-detail">${outfit.components.shoes.detail}</div>
-                </div>
-                <div class="exploded-item">
-                    <div class="item-icon">🎒</div>
-                    <div class="item-label">Accessories</div>
-                    <div class="item-detail">${outfit.components.accessories.join(', ')}</div>
+
+                <div style="grid-column: 1 / -1; background: rgba(255,255,255,0.7); border: 2px solid rgba(0,0,0,0.1); border-radius: 12px; padding: 1rem 1.2rem; margin-top: 1rem;">
+                    <p style="font-size: 0.85rem; color: var(--text-light); line-height: 1.5; margin: 0;">
+                        <strong style="color: var(--dark);">💡 Note:</strong> These are indicative concept designs created with AI assistance for faster iteration during validation. Final designs will be carefully crafted and selected by our human design team before production.
+                    </p>
                 </div>
             `;
-            
-            exploded.classList.add('active');
+        }
+
+        function navigateOutfit(direction) {
+            const totalOutfits = data[currentCollection].outfits.length;
+            currentOutfitIndex = (currentOutfitIndex + direction + totalOutfits) % totalOutfits;
+            showExplodedOutfit();
         }
 
         function closeExploded() {
-            document.getElementById('exploded-view').classList.remove('active');
+            document.getElementById('exploded').classList.remove('active');
         }
 
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
+        // Vote Form
+        function openVoteForm(type, name) {
+            voteTarget = { type, name };
+            document.getElementById('vote-form').classList.add('active');
+        }
+
+        function closeVoteForm() {
+            document.getElementById('vote-form').classList.remove('active');
+        }
+
+        function submitVote(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const countryCode = document.getElementById('country-code').value;
+            const phone = document.getElementById('phone').value;
+            const city = document.getElementById('city').value;
+            const age = document.getElementById('age').value;
+            const gender = document.getElementById('gender').value;
+            const feedback = document.getElementById('feedback').value;
+            const subscribeOnly = document.getElementById('subscribe-only').checked;
+            
+            // Get selected collections and outfits
+            const selectedCollections = [];
+            const selectedOutfits = [];
+            
+            document.querySelectorAll('input[name="collection"]:checked').forEach(cb => {
+                selectedCollections.push(cb.value);
             });
+            
+            document.querySelectorAll('input[name="outfit"]:checked').forEach(cb => {
+                selectedOutfits.push(cb.value);
+            });
+            
+            // Validation
+            if (age < 13) {
+                alert('⚠️ You must be at least 13 years old to vote.');
+                return;
+            }
+            
+            if (age > 120) {
+                alert('⚠️ Please enter a valid age.');
+                return;
+            }
+            
+            if (phone && phone.length < 5) {
+                alert('⚠️ Please enter a valid phone number.');
+                return;
+            }
+            
+            // Only require collection selection if NOT subscribe-only
+            if (!subscribeOnly && selectedCollections.length === 0) {
+                alert('⚠️ Please select at least one collection you liked, or check "Just here to stay updated"');
+                return;
+            }
+            
+            // Build success message
+            let voteMessage = '';
+            
+            if (subscribeOnly) {
+                voteMessage = `✅ Subscription confirmed!\n\n👤 ${name}\n📧 ${email}\n📍 ${city}\n\n`;
+                voteMessage += `📬 You'll be notified when we launch final collections and pricing!\n`;
+            } else {
+                voteMessage = `✅ Vote recorded!\n\n👤 ${name}\n📧 ${email}\n📍 ${city}\n\n`;
+                voteMessage += `🎨 Collections: ${selectedCollections.join(', ')}\n`;
+                if (selectedOutfits.length > 0) {
+                    voteMessage += `👗 Outfits: ${selectedOutfits.length} selected\n`;
+                }
+            }
+            voteMessage += `\nThank you for participating in REWIND! 🎉`;
+            
+            alert(voteMessage);
+            
+            // Reset form
+            document.getElementById('user-vote-form').reset();
+            // Hide all outfit sections
+            document.querySelectorAll('.outfit-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            closeVoteForm();
+            closeExploded();
+            closeModal();
+        }
+
+        // Login Functions
+        function loginWithGoogle() {
+            alert('🔐 Google Login\n\nThis feature will be implemented with Google OAuth.\nFor now, please fill the form below.');
+        }
+
+        function loginWithEmail() {
+            alert('📧 Email Login\n\nThis feature will be implemented soon.\nFor now, please fill the form below.');
+        }
+
+        // Toggle outfit sections based on collection selection
+        function toggleOutfits(collection) {
+            const checkbox = document.querySelector(`input[value="${collection}"]`);
+            const outfitSection = document.getElementById(`outfits-${collection}`);
+            
+            if (checkbox.checked) {
+                outfitSection.classList.add('active');
+            } else {
+                outfitSection.classList.remove('active');
+                // Uncheck all outfits in this section
+                outfitSection.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+            }
+        }
+
+        function handleSubscribeOnly() {
+            const subscribeOnlyCheckbox = document.getElementById('subscribe-only');
+            const collectionCheckboxes = document.querySelectorAll('input[name="collection"]');
+            const outfitCheckboxes = document.querySelectorAll('input[name="outfit"]');
+            const collectionsLabel = document.querySelector('label[for="collections"]') || document.querySelector('.form-group.full-width label');
+            
+            if (subscribeOnlyCheckbox.checked) {
+                // Disable and uncheck all collection and outfit checkboxes
+                collectionCheckboxes.forEach(cb => {
+                    cb.checked = false;
+                    cb.disabled = true;
+                });
+                outfitCheckboxes.forEach(cb => {
+                    cb.checked = false;
+                    cb.disabled = true;
+                });
+                // Hide outfit sections
+                document.querySelectorAll('.outfit-section').forEach(section => {
+                    section.classList.remove('active');
+                });
+                // Update label to show it's optional
+                if (collectionsLabel) {
+                    collectionsLabel.textContent = collectionsLabel.textContent.replace(' *', ' (Optional)');
+                }
+            } else {
+                // Re-enable all checkboxes
+                collectionCheckboxes.forEach(cb => {
+                    cb.disabled = false;
+                });
+                outfitCheckboxes.forEach(cb => {
+                    cb.disabled = false;
+                });
+                // Restore required label
+                if (collectionsLabel) {
+                    collectionsLabel.textContent = collectionsLabel.textContent.replace(' (Optional)', ' *');
+                }
+            }
+        }
+
+        // Navigate across ALL outfits in ALL collections
+        function navigateOutfit(direction) {
+            // Create flat array of all outfits
+            const allOutfits = [];
+            Object.keys(data).forEach(key => {
+                data[key].outfits.forEach((outfit, index) => {
+                    allOutfits.push({ collection: key, index: index });
+                });
+            });
+
+            // Find current position in flat array
+            let currentPosition = 0;
+            for (let i = 0; i < allOutfits.length; i++) {
+                if (allOutfits[i].collection === currentCollection && allOutfits[i].index === currentOutfitIndex) {
+                    currentPosition = i;
+                    break;
+                }
+            }
+
+            // Navigate
+            currentPosition = (currentPosition + direction + allOutfits.length) % allOutfits.length;
+            
+            // Update current collection and index
+            currentCollection = allOutfits[currentPosition].collection;
+            currentOutfitIndex = allOutfits[currentPosition].index;
+            
+            showExplodedOutfit();
+        }
+
+        // ESC to close
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+                closeExploded();
+                closeVoteForm();
+            }
         });
 
-        // Form submission
-        document.getElementById('join-form').addEventListener('submit', function(e) {
-            setTimeout(() => {
-                alert('🎉 Welcome to the movement! Check your email for updates.');
-                this.reset();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }, 500);
-        });
-
-        // Update voting card selection
-        document.querySelectorAll('.voting-card').forEach(card => {
-            const checkbox = card.querySelector('input[type="checkbox"]');
-            checkbox.addEventListener('change', function() {
-                if (this.checked) {
-                    card.classList.add('selected');
-                } else {
-                    card.classList.remove('selected');
-                }
-            });
-        });
+        // Auto-rotate collections carousel
+        let currentCarouselIndex = 0;
+        const carouselCollections = ['hologram', 'patchwork', 'utility'];
+        
+        function rotateCarousel() {
+            currentCarouselIndex = (currentCarouselIndex + 1) % carouselCollections.length;
+            const collectionKey = carouselCollections[currentCarouselIndex];
+            updateCarouselDisplay(collectionKey);
+        }
+        
+        function updateCarouselDisplay(key) {
+            const carousel = document.getElementById('collection-carousel');
+            if (!carousel) return;
+            
+            const collection = data[key];
+            const collectionNames = {
+                hologram: 'HOLOGRAM GLAM',
+                patchwork: 'PATCHWORK STREET',
+                utility: 'UTILITY FUTURE'
+            };
+            const collectionIcons = {
+                hologram: '🦋',
+                patchwork: '🎨',
+                utility: '🚀'
+            };
+            const collectionDescs = {
+                hologram: 'Y2K nostalgia • Iridescent • Butterfly energy',
+                patchwork: 'Maximalist • Bold colors • Upcycled',
+                utility: 'Neo-Y2K • Urban tech • Mesh & cargo'
+            };
+            
+            carousel.innerHTML = `
+                <div class="carousel-collection" onclick="openCollection('${key}')">
+                    <div class="carousel-icon">${collectionIcons[key]}</div>
+                    <h2 class="carousel-title">${collectionNames[key]}</h2>
+                    <p class="carousel-desc">${collectionDescs[key]}</p>
+                    <button class="carousel-vote-btn" onclick="event.stopPropagation(); openVoteForm('collection', '${collectionNames[key]}')">VOTE FOR THIS COLLECTION</button>
+                    <div class="carousel-dots">
+                        ${carouselCollections.map((c, i) => `<span class="dot ${c === key ? 'active' : ''}" onclick="event.stopPropagation(); jumpToCarousel(${i})"></span>`).join('')}
+                    </div>
+                </div>
+            `;
+        }
+        
+        function jumpToCarousel(index) {
+            currentCarouselIndex = index;
+            updateCarouselDisplay(carouselCollections[index]);
+        }
+        
+        // Start carousel rotation
+        setInterval(rotateCarousel, 2000);
+        
+        // Initialize carousel
+        setTimeout(() => {
+            updateCarouselDisplay('hologram');
+        }, 100);
     </script>
 </body>
 </html>
-
-
-
